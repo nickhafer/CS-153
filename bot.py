@@ -1,71 +1,79 @@
 import os
 import discord
 import logging
-import platform
 
 from discord.ext import commands
 from dotenv import load_dotenv
-from agent import WeatherAgent
-
-intents = discord.Intents.default()
-
-# Enable message content intent so the bot can read messages.
-# The message content intent must be enabled in the Discord Developer Portal as well.
-intents.message_content = True
-
-logger = logging.getLogger("discord")
-
+from agent import MistralAgent
 
 PREFIX = "!"
-CUSTOM_STATUS = "the forecasts"
+
+# Setup logging
+logger = logging.getLogger("discord")
+
+# Load the environment variables
+load_dotenv()
+
+# Create the bot with all intents
+# The message content and members intent must be enabled in the Discord Developer Portal for the bot to work.
+intents = discord.Intents.all()
+bot = commands.Bot(command_prefix=PREFIX, intents=intents)
+
+# Import the Mistral agent from the agent.py file
+agent = MistralAgent()
 
 
-class DiscordBot(commands.Bot):
-    def __init__(self):
-        super().__init__(
-            command_prefix=commands.when_mentioned_or(PREFIX), intents=intents
-        )
-
-        self.logger = logger
-        self.weather_agent = WeatherAgent()
-
-    async def on_ready(self):
-        self.logger.info("-------------------")
-        self.logger.info(f"Logged in as {self.user}")
-        self.logger.info(f"Discord.py API version: {discord.__version__}")
-        self.logger.info(f"Python version: {platform.python_version()}")
-        self.logger.info(
-            f"Running on: {platform.system()} {platform.release()} ({os.name})"
-        )
-        self.logger.info("-------------------")
-
-        # Set the bot's custom status to "Watching the forecasts"
-        await self.change_presence(
-            activity=discord.Activity(
-                type=discord.ActivityType.watching, name=CUSTOM_STATUS
-            )
-        )
-
-    async def on_message(self, message: discord.Message):
-        await self.process_commands(message)
-
-        # Ignore messages from self or other bots.
-        if (
-            message.author == self.user
-            or message.author.bot
-            or message.content.startswith("!")
-        ):
-            return
-
-        self.logger.info(f"Message from {message.author}: {message.content}")
-
-        # Run the weather agent whenever the bot receives a message.
-        await self.weather_agent.run(message)
+# Get the token from the environment variables
+token = os.getenv("DISCORD_TOKEN")
 
 
-if __name__ == "__main__":
-    load_dotenv()
-    token = os.getenv("DISCORD_TOKEN")
+@bot.event
+async def on_ready():
+    """
+    Called when the client is done preparing the data received from Discord.
+    Prints message on terminal when bot successfully connects to discord.
 
-    bot = DiscordBot()
-    bot.run(token)
+    https://discordpy.readthedocs.io/en/latest/api.html#discord.on_ready
+    """
+    logger.info(f"{bot.user} has connected to Discord!")
+
+
+@bot.event
+async def on_message(message: discord.Message):
+    """
+    Called when a message is sent in any channel the bot can see.
+
+    https://discordpy.readthedocs.io/en/latest/api.html#discord.on_message
+    """
+    # Don't delete this line! It's necessary for the bot to process commands.
+    await bot.process_commands(message)
+
+    # Ignore messages from self or other bots to prevent infinite loops.
+    if message.author.bot or message.content.startswith("!"):
+        return
+
+    # Process the message with the agent you wrote
+    # Open up the agent.py file to customize the agent
+    logger.info(f"Processing message from {message.author}: {message.content}")
+    response = await agent.run(message)
+
+    # Send the response back to the channel
+    await message.reply(response)
+
+
+# Commands
+
+
+# This example command is here to show you how to add commands to the bot.
+# Run !ping with any number of arguments to see the command in action.
+# Feel free to delete this if your project will not need commands.
+@bot.command(name="ping", help="Pings the bot.")
+async def ping(ctx, *, arg=None):
+    if arg is None:
+        await ctx.send("Pong!")
+    else:
+        await ctx.send(f"Pong! Your argument was {arg}")
+
+
+# Start the bot, connecting it to the gateway
+bot.run(token)

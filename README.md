@@ -1,43 +1,149 @@
-# CS 153 - Weather Agent Example Code
+# CS 153 - Infrastructure at Scale AI Agent Starter Code
 
-Here is an example of a very simple final project. This should be a good starter point giving you a sense of what technical abilities you will need for this class. This would be an example of a simple, passing grade project that has been built off our starter code. We're looking for much cooler and technically complex projects that will catch the eyes of our judges :).
+Note that for Discord the terms Bot and App are interchangable. We will use App in this manual.
 
-## Weather Agent
+## Discord App Framework Code
 
-https://github.com/user-attachments/assets/0d1c6cc0-933e-4350-ab8d-49eb3e15ffc4
+This is the base framework for students to complete the CS 153 final project. Please follow the instructions to fork this repository into your own repository and make all of your additions there.
 
-This Discord bot listens for messages requesting information about the weather in a specific location (i.e. "What's the weather in SF?" or "Is it raining right now in NYC?") and responds to their prompt with accurate weather information.
+## Discord App Setup Instructions
 
-This is achieved through use of a _weather tool_ which gives the agent access to real-time weather data. Your projects will probably incorporate a tool of some sort as well to enhance the abilities of your agent.
+Your group will be making your very own AI agent and import it into our CS153 server as a Discord App. This starter code provides the framework for a Discord App implemented in Python. Follow the instructions below.
 
-## What is an Agent?
+### Instructional Video
+We have put together a video going through the setup of this starter code, and explaining various pieces of it. We highly recommend giving it a watch!
 
-An LLM turns into an Agent when it is given the ability to take actions on the user's behalf. In this case, the action was looking up weather data. Other examples of actions are adding an event to your calendar, scraping a website, or sending an email. This is the beauty of Agents: there's infinite actions out there yet to be explored.
+[![Image 1224x834 Small](https://github.com/user-attachments/assets/990c87bc-17f8-44a6-8c0b-c313a8a04693)](https://drive.google.com/file/d/1doJQYJjCHA0fuOQ8hP3mcmDRORq7E28v/view)
 
-## What are tools?
+### Join the Discord Server
 
-An Agent accomplishes its task using _tools_, which are Python functions that the agent can call to obtain certain information or take certain actions. In this case, the Weather Agent uses the `seven_day_forecast(long, lat)` function in `/tools/weather.py` to fetch weather data for a specific location.
+First, every member of the team should join the Discord server using the invite link on Ed.
 
-See more on [function calling](https://docs.mistral.ai/capabilities/function_calling/) in Mistral's documentation.
+### Get your Role within the Server
 
-## Weather Agent Structure
+Role Options:
 
-This project uses two separate LLM conversations to achieve its task.
+`Student`: For enrolled students in the course.
 
-### Task 1
+`Online-Student`: For students taking this course online.
 
-To act as a passive observer of the channel, the first task is to check if a message explicitly requests weather information for a specific city. While this could be combined with the second task, separating the two is a design decision to allow the agent to fully focus on one single task at a time.
+`Auditor`: For those auditing the course.
 
-Task one is defined by `EXTRACT_LOCATION_PROMPT` in `agent.py`.
+`Collaborator`: For external collaborators or guests.
 
-If no weather request is extracted from the message, which will likely be the case most of the time, the bot will not respond.
+How to Join Your Role:
 
-Otherwise, the bot extracts the location and continues to task 2.
+1. Send a Direct Message (DM) to the Admin Bot.
+2. Use the following command format: `.join <Role Name>`
+3. Replace `<Role Name>` with one of the options above (e.g., `.join Student`).
 
-### Task 2
+How to Leave Your Role:
 
-Once the location is extracted, task 2 provides the agent with the `seven_day_forecast(long, lat)` tool to fetch weather information for a specific longitude and latitude. The LLM is great at providing the longitude and latitude itself given a location, so it's able to call the function directly.
+1. Send a Direct Message (DM) to the Admin Bot.
+2. Use the following command format: `.leave <Role Name>`
+3. Replace `<Role Name>` with one of the options above (e.g., `.leave Student`).
 
-The function is then called, and its response is piped back into the LLM.
+### Creating/Joining Your Group Channel
 
-Finally, the LLM replies with its final response, the message that will be sent to the user that answers their weather question.
+How to create or join your group channel:
+
+1. Send a Direct Message (DM) to the Admin Bot.
+2. Pick a **unique** group name (**IMPORTANT**)
+3. Use the following command format:`.channel <Group Name>`
+4. Replace `<Group Name>` with the name of your project group (e.g., `.channel Group 1`).
+
+**What Happens When You Use the Command:**
+
+If the Channel Already Exists:
+
+- Check if you already have the role for this group. If you don’t have the role, it will assign you the role corresponding to `<Group Name>` granting you access to the channel.
+
+If the Channel Does Not Exist:
+
+- Create a new text channel named `<Group-Name>` in the Project Channels category.
+- Create a role named `<group name>` (the system will intentionally lower the case) and assign it to you.
+
+- Set permissions so that:
+  - Only members with the `<group name>` role can access the channel.
+  - The app and server admins have full access. All other server members are denied access.
+  - Once completed, you'll be able to access your group's private channel in the Project Channels category.
+
+## [One student per group] Setting up your bot
+
+##### Note: only ONE student per group should follow the rest of these steps.
+
+### Download files
+
+1. Fork and clone this GitHub repository.
+2. Share the repo with your teammates.
+3. Create a file called `.env` the same directory/folder as `bot.py`. The `.env` file should look like this, replacing the “your key here” with your key. In the below sections, we explain how to obtain Discord keys and Mistral API keys.
+
+```
+DISCORD_TOKEN=“your key here”
+MISTRAL_API_KEY=“your key here”
+```
+
+#### Making the bot
+
+1. Go to https://discord.com/developers and click “New Application” in the top right corner.
+2. Pick a cool name for your new bot!
+
+##### It is very important that you name your app exactly following this scheme; some parts of the bot’s code rely on this format.
+
+1. Next, you’ll want to click on the tab labeled “Bot” under “Settings.”
+2. Click “Copy” to copy the bot’s token. If you don’t see “Copy”, hit “Reset Token” and copy the token that appears (make sure you’re the first team member to go through these steps!)
+3. Open `.env` and paste the token between the quotes on the line labeled `DISCORD_TOKEN`.
+4. Scroll down to a region called “Privileged Gateway Intents”
+5. Tick the options for “Presence Intent”, “Server Members Intent”, and “Message Content Intent”, and save your changes.
+6. Click on the tab labeled “OAuth2” under “Settings”
+7. Locate the tab labeled “OAuth2 URL Generator” under “OAuth2”. Check the box labeled “bot”. Once you do that, another area with a bunch of options should appear lower down on the page.
+8. Check the following permissions, then copy the link that’s generated. <em>Note that these permissions are just a starting point for your bot. We think they’ll cover most cases, but you may run into cases where you want to be able to do more. If you do, you’re welcome to send updated links to the teaching team to re-invite your bot with new permissions.</em>
+  <img width="1097" alt="bot_permissions" src="https://github.com/user-attachments/assets/4db80209-e8d3-4e71-8cff-5f5e04beceeb" />
+9. Copy paste this link into the #app-invite-link channel on the CS 153 Discord server. Someone in the teaching team will invite your bot.
+10. After your bot appears in #welcome, find your bot's "application ID" on the Discord Developer panel.
+
+![CleanShot 2025-01-21 at 23 42 53@2x](https://github.com/user-attachments/assets/2cf6b8fd-5756-494c-a6c3-8c61e821d568)
+    
+12. Send a DM to the admin bot: use the `.add-bot <application ID>` command to add the bot to your channel.
+
+#### Setting up the Mistral API key
+
+1. Go to [Mistral AI Console](https://console.mistral.ai) and sign up for an account. During sign-up, you will be prompted to set up a workspace. Choose a name for your workspace and select "I'm a solo creator." If you already have an account, log in directly.
+2. After logging in, navigate to the "Workspace" section on the left-hand menu. Click on "Billing" and select “Experiment for free”.
+3. A pop-up window will appear. Click "Accept" to subscribe to the experiment plan and follow the instructions to verify your phone number. After verifying your phone number, you may need to click "Experiment for free" again to finish subscribing. 
+4. Once you have successfully subscribed to the experiment plan, go to the "API keys" page under the “API” section in the menu on the left.
+5. Click on "Create new key" to generate a new API key.
+6. After the key is generated, it will appear under “Your API keys” with the text: `“Your key is: <your-api-key>”`. Copy the API key and save it securely, as it will not be displayed again for security reasons.
+7. Open your `.env` file and paste the API key between the quotes on the line labeled `MISTRAL_API_KEY`.
+
+#### Setting up the starter code
+
+We'll be using Python, if you've got a good Python setup already, great! But make sure that it is at least Python version 3.8. If not, the easiest thing to do is to make sure you have at least 3GB free on your computer and then to head over to [miniconda install](https://docs.anaconda.com/miniconda/install/) and install the Python 3 version of Anaconda. It will work on any operating system.
+
+After you have installed conda, close any open terminals you might have. Then open a terminal in the same folder as your `bot.py` file (If you haven’t used your terminal before, check out [this guide](https://www.macworld.com/article/2042378/master-the-command-line-navigating-files-and-folders.html)!). Once in, run the following command
+
+## 1. Create an environment with dependencies specified in env.yml:
+    conda env create -f local_env.yml
+
+## 2. Activate the new environment:
+    conda activate discord_bot
+    
+This will install the required dependencies to start the project.
+
+## Guide To The Starter Code
+
+The starter code includes two files, `bot.py` and `agent.py`. Let's take a look at what this project already does.
+
+To do this, run `python3 bot.py` and leave it running in your terminal. Next, go into your team’s channel `Group-Name` and try typing any message. You should see the bot respond in the same channel. The default behavior of the bot is, that any time it sees a message (from a user), it sends that message to Mistral's API and sends back the response.
+
+Let's take a deeper look into how this is done. In the `bot.py` file, scroll to the `on_message` function. This function is called every time a message is sent in your channel. Observe how `agent.run()` is called on the message content, and how the result of that message call is sent back to the user.
+
+This agent is defined in the `agent.py` file. The `run()` function creates a simple LLM call with a system message defined at the top, and the user's message passed in. The response from the LLM is then returned.
+
+Check out this finalized [weather agent bot](https://github.com/CS-153/weather-agent-template/blob/main/agent.py) to see a more detailed example.
+
+## Troubleshooting
+
+### `Exception: .env not found`!
+
+If you’re seeing this error, it probably means that your terminal is not open in the right folder. Make sure that it is open inside the folder that contains `bot.py` and `.env`
