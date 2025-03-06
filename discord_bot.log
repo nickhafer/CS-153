@@ -91,3 +91,149 @@ mistralai.models.sdkerror.SDKError: API error occurred: Status 429
 2025-03-05 17:42:59,094 - discord.agent - ERROR - Failed to parse JSON from Mistral response: The message does not explicitly request a limit on the number of results to return. Therefore, the response is:
 
 {"Limit": "5"}
+2025-03-05 18:11:17,187 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-05 18:11:17,262 - discord.client - INFO - logging in using static token
+2025-03-05 18:11:18,389 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 4a1e5d4c881e89074cfa25b072cdc485).
+2025-03-05 18:11:20,418 - discord - INFO - GoForBot#2339 has connected to Discord!
+2025-03-05 18:11:39,475 - discord - INFO - Processing message from the510dude: where can i go fishing in salt lake city
+2025-03-05 18:11:41,080 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:11:43,511 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:11:45,597 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:11:48,019 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:11:48,023 - discord.agent - ERROR - Failed to parse JSON from Mistral response: The message does not explicitly request a limit on the number of results to return. Therefore, the response is:
+
+{"Limit": "5"}
+2025-03-05 18:13:24,225 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-05 18:13:24,294 - discord.client - INFO - logging in using static token
+2025-03-05 18:13:24,972 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: d20f81aa5072085ce6218149e1686b2a).
+2025-03-05 18:13:27,026 - discord - INFO - GoForBot#2339 has connected to Discord!
+2025-03-05 18:13:33,076 - discord - INFO - Processing message from the510dude: where can i go fishing in salt lake city
+2025-03-05 18:13:33,763 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:13:35,814 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:13:37,835 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:13:40,201 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:14:47,341 - discord - INFO - Processing message from the510dude: where can i go fishing in salt lake city
+2025-03-05 18:14:48,090 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:14:50,116 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:14:52,508 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:14:55,101 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:15:05,067 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-05 18:15:05,147 - discord.client - INFO - logging in using static token
+2025-03-05 18:15:05,894 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: de94ed0d331cd59d8be15d476066a85a).
+2025-03-05 18:15:07,920 - discord - INFO - GoForBot#2339 has connected to Discord!
+2025-03-05 18:15:11,171 - discord - INFO - Processing message from the510dude: where can i go fishing in salt lake city
+2025-03-05 18:15:11,800 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:15:14,833 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:15:17,736 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:15:20,210 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:15:33,295 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:16:12,157 - discord - INFO - Processing message from the510dude: where can i go fishing within 30 miles of salt lake city
+2025-03-05 18:16:14,666 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:16:20,072 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:16:22,323 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:16:24,408 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:16:36,070 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:17:26,747 - discord - INFO - Processing message from the510dude: tell me more about redman campground
+2025-03-05 18:17:27,268 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:17:29,261 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:17:40,590 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:17:42,487 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:17:50,977 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:19:04,990 - discord - INFO - Processing message from the510dude: give me 3 places i can camp withing 25 miles of palo alto
+2025-03-05 18:19:06,800 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:19:08,951 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:19:10,897 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:19:13,093 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:19:28,820 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:19:29,260 - discord - ERROR - Error processing message: 400 Bad Request (error code: 50035): Invalid Form Body
+In content: Must be 2000 or fewer in length.
+2025-03-05 18:19:29,268 - discord - ERROR - Traceback (most recent call last):
+  File "/Users/nickhafer/Desktop/CS 153/CS-153/bot.py", line 83, in on_message
+    await message.reply(response)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/message.py", line 1869, in reply
+    return await self.channel.send(content, reference=self, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/abc.py", line 1644, in send
+    data = await state.http.send_message(channel.id, params=params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/http.py", line 762, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
+In content: Must be 2000 or fewer in length.
+
+2025-03-05 18:19:56,265 - discord - INFO - Processing message from the510dude: give me 3 places i can camp withing 25 miles of palo alto, ca
+2025-03-05 18:19:57,856 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:19:59,880 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:20:02,437 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:20:04,458 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:20:36,094 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:20:36,443 - discord - ERROR - Error processing message: 400 Bad Request (error code: 50035): Invalid Form Body
+In content: Must be 2000 or fewer in length.
+2025-03-05 18:20:36,444 - discord - ERROR - Traceback (most recent call last):
+  File "/Users/nickhafer/Desktop/CS 153/CS-153/bot.py", line 83, in on_message
+    await message.reply(response)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/message.py", line 1869, in reply
+    return await self.channel.send(content, reference=self, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/abc.py", line 1644, in send
+    data = await state.http.send_message(channel.id, params=params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/http.py", line 762, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
+In content: Must be 2000 or fewer in length.
+
+2025-03-05 18:21:02,621 - discord - INFO - Processing message from the510dude: where can i go fishing within 30 miles of salt lake city
+2025-03-05 18:21:03,743 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:21:05,896 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:21:08,000 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:21:09,992 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:21:19,001 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:21:40,403 - discord - INFO - Processing message from the510dude: give me 3 places i can camp withing 25 miles of palo alto, ca
+2025-03-05 18:21:41,479 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:21:43,577 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:21:46,238 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:21:48,286 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:21:56,274 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:22:13,887 - discord - INFO - Processing message from the510dude: yes please try again with a radius of 50 miles
+2025-03-05 18:22:14,911 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:22:16,959 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:22:19,346 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:22:21,310 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:22:24,019 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:22:40,569 - discord - INFO - Processing message from the510dude: give me 3 places i can camp within 50 miles of palo alto, ca
+2025-03-05 18:22:41,874 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:22:43,992 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:22:46,653 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:22:49,727 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:22:56,487 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:23:27,276 - discord - INFO - Processing message from the510dude: where can i camp within 30 miles of palo alto, ca?
+2025-03-05 18:23:27,925 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:23:30,198 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:23:32,271 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:23:34,245 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:23:48,819 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:24:04,762 - discord - INFO - Processing message from the510dude: tell me about towle campground
+2025-03-05 18:24:05,810 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:24:07,858 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:24:10,454 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:24:12,879 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:24:21,377 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:24:41,535 - discord - INFO - Processing message from the510dude: tell me about towle campground near the bay area in california
+2025-03-05 18:24:43,433 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:24:45,798 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:24:48,306 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:24:50,632 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:24:59,064 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:25:25,271 - discord - INFO - Processing message from the510dude: tell me about towle campground near portola valley, ca
+2025-03-05 18:25:30,670 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:25:32,685 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:25:36,132 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:25:38,480 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:25:45,109 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:26:02,240 - discord - INFO - Processing message from the510dude: give me 3 places i can camp withing 25 miles of palo alto
+2025-03-05 18:26:03,163 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:26:05,169 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:26:07,531 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:26:09,532 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:26:22,621 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"

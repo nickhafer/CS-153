@@ -6,6 +6,7 @@ from mistralai import Mistral
 import discord
 import logging
 import time
+import re
 
 MISTRAL_MODEL = "mistral-large-latest"
 
@@ -189,8 +190,27 @@ class MistralAgent:
                     result = result.replace("```json", "").replace("```", "").strip()
                 
                 try:
-                    # Try to parse the JSON response
-                    return json.loads(result)
+                    # Extract just the JSON part from the response
+                    # Look for the first occurrence of a JSON-like pattern
+                    json_pattern = r'(\{.*?\})'
+                    json_match = re.search(json_pattern, result, re.DOTALL)
+                    
+                    if json_match:
+                        json_str = json_match.group(1)
+                        return json.loads(json_str)
+                    else:
+                        logger.error(f"No JSON pattern found in Mistral response: {result}")
+                        # Return a default value based on the prompt type
+                        if "location" in prompt:
+                            return {"location": "none"}
+                        elif "ActivityName" in prompt:
+                            return {"ActivityName": "none"}
+                        elif "Radius" in prompt:
+                            return {"Radius": "10"}
+                        elif "Limit" in prompt:
+                            return {"Limit": "5"}
+                        return {}
+                    
                 except json.JSONDecodeError:
                     logger.error(f"Failed to parse JSON from Mistral response: {result}")
                     # Return a default value based on the prompt type
