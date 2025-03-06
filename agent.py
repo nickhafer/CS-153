@@ -7,6 +7,7 @@ import discord
 import logging
 import time
 import re
+from collections import defaultdict
 
 MISTRAL_MODEL = "mistral-large-latest"
 
@@ -159,6 +160,10 @@ class MistralAgent:
         # Add rate limiting variables
         self.last_request_time = 0
         self.request_interval = 1.0  # Minimum time between requests in seconds
+        
+        # Add conversation memory
+        self.conversation_history = defaultdict(list)
+        self.max_history_length = 5  # Keep last 5 interactions per user
 
     async def extract_parameter(self, message_content, prompt):
         """Extract parameters from user message using Mistral with rate limiting"""
@@ -326,8 +331,8 @@ class MistralAgent:
 
     async def summarize_results(self, query, results):
         """Use Mistral to summarize the search results in a user-friendly way"""
-        if not results:
-            return "I couldn't find any recreational facilities matching your criteria. Please try a different search."
+        # if not results:
+        #     return "I couldn't find any recreational facilities matching your criteria. Please try a different search. You could try expanding the radius or changing the activity or specifying a different location."
             
         # Limit the size of results to avoid token limits
         results_str = json.dumps(results[:5], indent=2)
@@ -351,8 +356,34 @@ class MistralAgent:
     async def run(self, message: discord.Message):
         """Process a user message and return a response"""
         user_query = message.content
+        user_id = str(message.author.id)
         
         try:
+            # Check conversation history for failed searches
+            previous_failed_search = False
+            previous_location = None
+            previous_activity = None
+            
+            if self.conversation_history[user_id]:
+                last_interaction = self.conversation_history[user_id][-1]
+                if "no_results" in last_interaction and last_interaction["no_results"]:
+                    previous_failed_search = True
+                    previous_location = last_interaction.get("location")
+                    previous_activity = last_interaction.get("activity")
+                    
+                    # Check if this is a request to expand search with a custom radius
+                    expand_radius_match = re.search(r'expand\s+(?:search|radius)\s+(?:to|by)?\s*(\d+)', user_query.lower())
+                    if expand_radius_match:
+                        custom_radius = int(expand_radius_match.group(1))
+                        # Cap at 50 miles
+                        custom_radius = min(custom_radius, 50)
+                        user_query = f"Find {previous_activity if previous_activity != 'none' else 'recreational activities'} near {previous_location} within {custom_radius} miles"
+                        logger.info(f"Expanding previous search with custom radius: {user_query}")
+                    # Check if this is a simple request to expand search
+                    elif "expand" in user_query.lower() or "try again" in user_query.lower() or "search again" in user_query.lower():
+                        user_query = f"Find {previous_activity if previous_activity != 'none' else 'recreational activities'} near {previous_location} with expanded radius"
+                        logger.info(f"Expanding previous search: {user_query}")
+            
             # Extract parameters from the user's message with delay between requests
             location_data = await self.extract_parameter(user_query, EXTRACT_LOCATION_PROMPT)
             await asyncio.sleep(1.5)  # Add delay between API calls
@@ -370,6 +401,16 @@ class MistralAgent:
             radius = radius_data.get("Radius", "10")
             limit = limit_data.get("Limit", "5")
             
+            # If this is a follow-up to a failed search and no new location specified, use the previous one
+            if previous_failed_search and location == "none" and previous_location:
+                location = previous_location
+                logger.info(f"Using previous location: {location}")
+                
+            # If this is a follow-up to a failed search and no new activity specified, use the previous one
+            if previous_failed_search and activity == "none" and previous_activity:
+                activity = previous_activity
+                logger.info(f"Using previous activity: {activity}")
+            
             # Convert to integers with defaults
             try:
                 radius = int(radius) if radius != "none" else 10
@@ -378,6 +419,19 @@ class MistralAgent:
                 radius = 10
                 limit = 5
                 
+            # If this is a follow-up to a failed search, start with a larger radius
+            if previous_failed_search and "expand" in user_query.lower():
+                # Check if a custom radius was specified in the expand command
+                expand_radius_match = re.search(r'expand\s+(?:search|radius)\s+(?:to|by)?\s*(\d+)', user_query.lower())
+                if expand_radius_match:
+                    custom_radius = int(expand_radius_match.group(1))
+                    radius = min(custom_radius, 50)  # Cap at 50 miles
+                    logger.info(f"Using custom expansion radius: {radius} miles")
+                else:
+                    # Default expansion - at least 30 miles
+                    radius = max(radius, 30)
+                    logger.info(f"Using default expansion radius: {radius} miles")
+            
             # Cap values
             radius = min(radius, 50)
             limit = min(limit, 10)
@@ -394,28 +448,108 @@ class MistralAgent:
                     model=MISTRAL_MODEL,
                     messages=messages,
                 )
-                return response.choices[0].message.content
+                response_text = response.choices[0].message.content
+                # Truncate if longer than Discord's limit
+                if len(response_text) > 1990:
+                    response_text = response_text[:1990] + "..."
+                    
+                # Store in conversation history
+                self.conversation_history[user_id].append({
+                    "query": user_query,
+                    "response": response_text,
+                    "no_results": False
+                })
+                
+                # Limit history size
+                if len(self.conversation_history[user_id]) > self.max_history_length:
+                    self.conversation_history[user_id].pop(0)
+                    
+                return response_text
                 
             # Get coordinates for the location
             lat, lon = await self.get_coordinates(location)
             
             if not lat or not lon:
-                return f"I couldn't find the coordinates for '{location}'. Please try a different location or be more specific."
+                response_text = f"I couldn't find the coordinates for '{location}'. Please try a different location or be more specific."
+                
+                # Store in conversation history
+                self.conversation_history[user_id].append({
+                    "query": user_query,
+                    "response": response_text,
+                    "no_results": True,
+                    "location": location,
+                    "activity": activity
+                })
+                
+                # Limit history size
+                if len(self.conversation_history[user_id]) > self.max_history_length:
+                    self.conversation_history[user_id].pop(0)
+                    
+                return response_text
                 
             # Search for facilities and recreation areas
             facilities = await self.search_facilities(lat, lon, activity, radius, limit)
             rec_areas = await self.search_recreation_areas(lat, lon, activity, radius, limit)
             
-            # Combine and limit results
+            # Combine results
             combined_results = facilities + rec_areas
+            
+            # If no results found and radius is less than 50, try with extended radius
+            original_radius = radius
+            if not combined_results and radius < 50:
+                logger.info(f"No results found within {radius} miles. Extending search to 50 miles.")
+                radius = 50
+                
+                # Search again with extended radius
+                facilities = await self.search_facilities(lat, lon, activity, radius, limit)
+                rec_areas = await self.search_recreation_areas(lat, lon, activity, radius, limit)
+                
+                # Combine results
+                combined_results = facilities + rec_areas
+                
+            # Limit results
             combined_results = combined_results[:limit]
             
             # Summarize the results
-            search_summary = f"Looking for {activity if activity != 'none' else 'recreational activities'} near {location} within {radius} miles"
+            if not combined_results:
+                search_summary = f"Looking for {activity if activity != 'none' else 'recreational activities'} near {location} within {original_radius} miles"
+                no_results = True
+            elif original_radius != radius:
+                search_summary = f"Looking for {activity if activity != 'none' else 'recreational activities'} near {location}. Extended search to {radius} miles since no results were found within {original_radius} miles."
+                no_results = False
+            else:
+                search_summary = f"Looking for {activity if activity != 'none' else 'recreational activities'} near {location} within {radius} miles"
+                no_results = False
             
             # Add delay before final API call
             await asyncio.sleep(1.5)
-            return await self.summarize_results(search_summary, combined_results)
+            response_text = await self.summarize_results(search_summary, combined_results)
+            
+            # If no results were found, add a suggestion to try again with expanded search
+            if no_results:
+                response_text += "\n\nI couldn't find any results matching your criteria. You can try:\n"
+                response_text += "- Reply with 'expand search' to try again with a wider search area\n"
+                response_text += "- Reply with 'expand search to 30' to specify a custom search radius (up to 50 miles)\n"
+                response_text += "- Try a different location or activity"
+            
+            # Truncate if longer than Discord's limit
+            if len(response_text) > 1990:
+                response_text = response_text[:1990] + "..."
+            
+            # Store in conversation history
+            self.conversation_history[user_id].append({
+                "query": user_query,
+                "response": response_text,
+                "no_results": no_results,
+                "location": location,
+                "activity": activity
+            })
+            
+            # Limit history size
+            if len(self.conversation_history[user_id]) > self.max_history_length:
+                self.conversation_history[user_id].pop(0)
+            
+            return response_text
             
         except Exception as e:
             logger.error(f"Error in run method: {str(e)}")

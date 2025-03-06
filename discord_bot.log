@@ -296,3 +296,88 @@ aiohttp.client_exceptions.ClientConnectionResetError: Cannot write to closing tr
 2025-03-05 20:41:59,001 - discord.client - INFO - logging in using static token
 2025-03-05 20:42:00,020 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: cb035cdd1733233120c77bf8d5da3edf).
 2025-03-05 20:42:02,127 - discord - INFO - GoForBot#2339 has connected to Discord!
+2025-03-05 20:44:33,518 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-05 20:44:33,583 - discord.client - INFO - logging in using static token
+2025-03-05 20:44:34,570 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 9b362d4570579aeb0f2cc61d6f25dcad).
+2025-03-05 20:44:36,696 - discord - INFO - GoForBot#2339 has connected to Discord!
+2025-03-05 20:45:27,023 - discord - INFO - Processing message from the510dude: give me 3 places i can camp withing 25 miles of palo alto
+2025-03-05 20:45:28,173 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:45:30,221 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:45:32,495 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:45:34,442 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:48:04,265 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-05 20:48:04,330 - discord.client - INFO - logging in using static token
+2025-03-05 20:48:05,153 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: f1b1998f987afc8385187d01c5f584c7).
+2025-03-05 20:48:07,227 - discord - INFO - GoForBot#2339 has connected to Discord!
+2025-03-05 20:49:15,493 - discord - INFO - Processing message from the510dude: give me 3 places i can camp withing 25 miles of palo alto
+2025-03-05 20:49:17,963 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:49:20,010 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:49:22,058 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:49:24,105 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:49:26,666 - discord.agent - INFO - No results found within 25 miles. Extending search to 50 miles.
+2025-03-05 20:50:58,308 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-05 20:50:58,381 - discord.client - INFO - logging in using static token
+2025-03-05 20:50:59,171 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 3ed52d9f11a8c75f5caff1d762a0ddf5).
+2025-03-05 20:51:01,213 - discord - INFO - GoForBot#2339 has connected to Discord!
+2025-03-05 20:51:07,424 - discord - INFO - Processing message from the510dude: give me 3 places i can camp withing 25 miles of palo alto
+2025-03-05 20:51:08,657 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:51:10,801 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:51:13,264 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:51:15,311 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:51:18,895 - discord.agent - INFO - No results found within 25 miles. Extending search to 50 miles.
+2025-03-05 20:51:24,939 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:51:39,687 - discord - INFO - Processing message from the510dude: yes
+2025-03-05 20:51:40,392 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:51:40,395 - discord.agent - ERROR - No JSON pattern found in Mistral response: Great! Please provide the message you'd like me to evaluate.
+2025-03-05 20:51:42,745 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:51:42,748 - discord.agent - ERROR - No JSON pattern found in Mistral response: It seems like you provided instructions and examples, but not a specific message to evaluate. Could you please provide the message that needs to be evaluated?
+2025-03-05 20:51:45,778 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:51:48,081 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:51:48,087 - discord.agent - ERROR - No JSON pattern found in Mistral response: Please provide the message so I can determine if it explicitly requests a limit on the number of results to return.
+2025-03-05 20:51:50,947 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:55:13,712 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-05 20:55:13,798 - discord.client - INFO - logging in using static token
+2025-03-05 20:55:14,684 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: ec1be265f42bb9acab490ad483bf6fc0).
+2025-03-05 20:55:16,716 - discord - INFO - GoForBot#2339 has connected to Discord!
+2025-03-05 20:55:27,423 - discord - INFO - Processing message from the510dude: give me 3 places i can camp withing 25 miles of palo alto
+2025-03-05 20:55:28,662 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:55:30,801 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:55:33,247 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:55:35,203 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:55:37,560 - discord.agent - INFO - No results found within 25 miles. Extending search to 50 miles.
+2025-03-05 20:55:44,014 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:55:52,775 - discord - INFO - Processing message from the510dude: expand search
+2025-03-05 20:55:52,776 - discord.agent - INFO - Expanding previous search: Find CAMPING near Palo Alto, CA with expanded radius
+2025-03-05 20:55:53,535 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:55:55,943 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:55:59,172 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:56:01,318 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:56:03,692 - discord.agent - INFO - No results found within 30 miles. Extending search to 50 miles.
+2025-03-05 20:56:09,920 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:56:21,902 - discord - INFO - Processing message from the510dude: expand search to 50 miles
+2025-03-05 20:56:21,905 - discord.agent - INFO - Expanding previous search: Find CAMPING near Palo Alto, CA with expanded radius
+2025-03-05 20:56:22,728 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:56:24,971 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:56:27,429 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:56:29,683 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:56:32,037 - discord.agent - INFO - No results found within 30 miles. Extending search to 50 miles.
+2025-03-05 20:56:44,395 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:57:10,746 - discord - INFO - Processing message from the510dude: i said 50 miles, expand search again
+2025-03-05 20:57:10,748 - discord.agent - INFO - Expanding previous search: Find CAMPING near Palo Alto, CA with expanded radius
+2025-03-05 20:57:11,463 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:57:13,657 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:57:17,177 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:57:19,144 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:57:21,803 - discord.agent - INFO - No results found within 30 miles. Extending search to 50 miles.
+2025-03-05 20:57:27,335 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 20:59:05,880 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-05 20:59:05,948 - discord.client - INFO - logging in using static token
+2025-03-05 20:59:06,731 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 88ccdb3a579fa5aea7a38a1a119478f5).
+2025-03-05 20:59:08,759 - discord - INFO - GoForBot#2339 has connected to Discord!
+2025-03-05 20:59:58,685 - discord - INFO - Processing message from the510dude: give me 3 places i can camp withing 25 miles of palo alto
+2025-03-05 20:59:59,708 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 21:00:01,755 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 21:00:03,752 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 21:00:05,850 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 21:00:08,307 - discord.agent - INFO - No results found within 25 miles. Extending search to 50 miles.
+2025-03-05 21:00:24,662 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
