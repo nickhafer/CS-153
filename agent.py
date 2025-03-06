@@ -1,29 +1,402 @@
 import os
+import json
+import aiohttp
+import asyncio
 from mistralai import Mistral
 import discord
+import logging
+import time
 
 MISTRAL_MODEL = "mistral-large-latest"
-SYSTEM_PROMPT = "You are a helpful assistant."
+
+# Setup logging
+logger = logging.getLogger("discord.agent")
+logger.setLevel(logging.INFO)
+
+SYSTEM_PROMPT = """
+You are a helpful assistant that provides information about recreational activities and 
+facilities in the United States. You can help users find camping spots, hiking trails, 
+fishing locations, and other outdoor activities.
+
+When providing information about recreational facilities, include:
+1. The name of the facility
+2. A brief description
+3. Location details
+4. Any relevant amenities or features
+5. Links to more information when available
+
+Be concise but informative, and always try to provide the most relevant results based on the user's query.
+"""
+
+EXTRACT_LOCATION_PROMPT = """
+Is this message explicitly requesting recreation information for a specific city/location?
+If not, return {"location": "none"}.
+
+Otherwise, return the full name of the city in JSON format.
+
+Examples:
+Message: Where can I fish in Salt Lake City?
+Response: {"location": "Salt Lake City, UT"}
+
+Message: What are the closest campgrounds to Bozeman?
+Response: {"location": "Bozeman, MT"}
+
+Message: Are there hiking trails near Boston?
+Response: {"location": "Boston, MA"}
+
+Message: Give me the hiking trails in Boulder.
+Response: {"location": "Boulder, CO"}
+
+Message: I love hiking in sf!
+Response: {"location": "none"}
+
+Message: Is camping fun in NYC?
+Response: {"location": "none"}
+"""
+
+EXTRACT_ACTIVITY_PROMPT = """
+Is this message explicitly requesting recreation information for a specific activity?
+If not, return {"ActivityName": "none"}.
+
+Otherwise, return the activity name in JSON format using one of these valid activity types:
+BIKING, CLIMBING, CAMPING, FISHING, HIKING, HUNTING, WINTER SPORTS, WATER SPORTS, RECREATIONAL VEHICLES, WILDLIFE VIEWING, OTHER
+
+Example:
+Message: Where can I fish in Salt Lake City?
+Response: {"ActivityName": "FISHING"}
+
+Message: What are the closest campgrounds to Bozeman?
+Response: {"ActivityName": "CAMPING"}
+
+Message: Are there hiking trails near Boston?
+Response: {"ActivityName": "HIKING"}
+
+Message: Give me the hiking trails in Boulder.
+Response: {"ActivityName": "HIKING"}
+
+Message: I love hiking in sf!
+Response: {"ActivityName": "none"}
+
+Message: Is camping fun in NYC?
+Response: {"ActivityName": "none"}
+"""
+
+EXTRACT_RADIUS_PROMPT = """
+Is this message explicitly requesting recreation information for a specific radius?
+If not, return {"Radius": "10"}.
+
+Otherwise, return the radius specified. If the value is greater than 50, return 50.
+
+Examples:
+Message: Where can I fish within 30 miles of Salt Lake City?
+Response: {"Radius": "30"}
+
+Message: What are the closest campgrounds to Bozeman?
+Response: {"Radius": "10"}
+
+Message: Are there hiking trails within 60 miles of Boston?
+Response: {"Radius": "50"}
+
+Message: Give me the hiking trails in Boulder.
+Response: {"Radius": "10"}
+
+Message: I love hiking in sf!
+Response: {"Radius": "10"}
+
+Message: Is camping fun in NYC?
+Response: {"Radius": "10"}
+"""
+
+EXTRACT_LIMIT_PROMPT = """
+Is this message explicitly requesting a limit on the number of results to return?
+If not, return {"Limit": "5"}.
+
+Otherwise, return the limit specified, with a maximum of 10. 
+
+Examples:
+Message: Show me the 3 best places to fish near Salt Lake City.
+Response: {"Limit": "3"}
+
+Message: What are the closest campgrounds to Bozeman?
+Response: {"Limit": "5"}
+
+Message: Show me 11 hiking trails within 60 miles of Boston?
+Response: {"Limit": "10"}
+
+Message: Give me the hiking trails in Boulder.
+Response: {"Limit": "5"}
+"""
+
+SUMMARIZE_RESULTS_PROMPT = """
+You are a helpful assistant that provides information about recreational activities and facilities in the United States.
+
+Below are the results from a search for recreational facilities. Please summarize these results in a friendly, informative way.
+Include the most relevant details for each facility, such as:
+- Name and type of facility
+- Brief description
+- Location
+- Key amenities or features
+- Any special notes
+
+Format the information in a clear, readable way. If there are no results, politely inform the user and suggest they try a different search.
+
+Search query: {query}
+Search results: {results}
+"""
 
 
 class MistralAgent:
     def __init__(self):
         MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY")
-
+        self.RIDB_API_KEY = os.getenv("RIDB_API_KEY")
         self.client = Mistral(api_key=MISTRAL_API_KEY)
+        self.base_url = "https://ridb.recreation.gov/api/v1"
+        self.headers = {
+            "apikey": self.RIDB_API_KEY,
+            "accept": "application/json"
+        }
+        # Add rate limiting variables
+        self.last_request_time = 0
+        self.request_interval = 1.0  # Minimum time between requests in seconds
 
-    async def run(self, message: discord.Message):
-        # The simplest form of an agent
-        # Send the message's content to Mistral's API and return Mistral's response
+    async def extract_parameter(self, message_content, prompt):
+        """Extract parameters from user message using Mistral with rate limiting"""
+        # Implement rate limiting
+        current_time = time.time()
+        time_since_last_request = current_time - self.last_request_time
+        if time_since_last_request < self.request_interval:
+            await asyncio.sleep(self.request_interval - time_since_last_request)
+        
+        messages = [
+            {"role": "system", "content": prompt},
+            {"role": "user", "content": message_content},
+        ]
 
+        max_retries = 3
+        retry_count = 0
+        
+        while retry_count < max_retries:
+            try:
+                self.last_request_time = time.time()
+                response = await self.client.chat.complete_async(
+                    model=MISTRAL_MODEL,
+                    messages=messages,
+                )
+                
+                result = response.choices[0].message.content
+                # Clean up the result to handle code blocks
+                if "```json" in result:
+                    result = result.replace("```json", "").replace("```", "").strip()
+                
+                try:
+                    # Try to parse the JSON response
+                    return json.loads(result)
+                except json.JSONDecodeError:
+                    logger.error(f"Failed to parse JSON from Mistral response: {result}")
+                    # Return a default value based on the prompt type
+                    if "location" in prompt:
+                        return {"location": "none"}
+                    elif "ActivityName" in prompt:
+                        return {"ActivityName": "none"}
+                    elif "Radius" in prompt:
+                        return {"Radius": "10"}
+                    elif "Limit" in prompt:
+                        return {"Limit": "5"}
+                    return {}
+                    
+            except Exception as e:
+                retry_count += 1
+                logger.warning(f"API request failed (attempt {retry_count}/{max_retries}): {str(e)}")
+                if "429" in str(e):  # Rate limit error
+                    wait_time = 2 ** retry_count  # Exponential backoff
+                    logger.info(f"Rate limited. Waiting {wait_time} seconds before retry.")
+                    await asyncio.sleep(wait_time)
+                else:
+                    # For other errors, wait a short time
+                    await asyncio.sleep(1)
+                
+                # If we've reached max retries, return default values
+                if retry_count >= max_retries:
+                    logger.error(f"Max retries reached. Returning default value.")
+                    if "location" in prompt:
+                        return {"location": "none"}
+                    elif "ActivityName" in prompt:
+                        return {"ActivityName": "none"}
+                    elif "Radius" in prompt:
+                        return {"Radius": "10"}
+                    elif "Limit" in prompt:
+                        return {"Limit": "5"}
+                    return {}
+
+    async def get_coordinates(self, location):
+        """Get latitude and longitude for a location using a geocoding service"""
+        if location == "none":
+            return None, None
+            
+        async with aiohttp.ClientSession() as session:
+            # Using OpenStreetMap Nominatim API for geocoding
+            url = f"https://nominatim.openstreetmap.org/search?q={location}&format=json&limit=1"
+            headers = {"User-Agent": "DiscordRecreationBot/1.0"}
+            
+            async with session.get(url, headers=headers) as response:
+                if response.status == 200:
+                    data = await response.json()
+                    if data and len(data) > 0:
+                        return data[0]["lat"], data[0]["lon"]
+                    else:
+                        logger.warning(f"No coordinates found for location: {location}")
+                        return None, None
+                else:
+                    logger.error(f"Error getting coordinates: {response.status}")
+                    return None, None
+
+    async def search_facilities(self, lat, lon, activity, radius, limit):
+        """Search for recreational facilities using the RIDB API"""
+        if not lat or not lon:
+            return []
+            
+        params = {
+            "latitude": lat,
+            "longitude": lon,
+            "radius": radius,
+            "limit": limit,
+            "full": "true"
+        }
+        
+        if activity and activity != "none":
+            params["activity"] = activity
+            
+        async with aiohttp.ClientSession() as session:
+            url = f"{self.base_url}/facilities"
+            async with session.get(url, headers=self.headers, params=params) as response:
+                if response.status == 200:
+                    data = await response.json()
+                    return data.get("RECDATA", [])
+                else:
+                    logger.error(f"Error searching facilities: {response.status}")
+                    error_text = await response.text()
+                    logger.error(f"Error details: {error_text}")
+                    return []
+
+    async def search_recreation_areas(self, lat, lon, activity, radius, limit):
+        """Search for recreational areas using the RIDB API"""
+        if not lat or not lon:
+            return []
+            
+        params = {
+            "latitude": lat,
+            "longitude": lon,
+            "radius": radius,
+            "limit": limit,
+            "full": "true"
+        }
+        
+        if activity and activity != "none":
+            params["activity"] = activity
+            
+        async with aiohttp.ClientSession() as session:
+            url = f"{self.base_url}/recareas"
+            async with session.get(url, headers=self.headers, params=params) as response:
+                if response.status == 200:
+                    data = await response.json()
+                    return data.get("RECDATA", [])
+                else:
+                    logger.error(f"Error searching recreation areas: {response.status}")
+                    return []
+
+    async def summarize_results(self, query, results):
+        """Use Mistral to summarize the search results in a user-friendly way"""
+        if not results:
+            return "I couldn't find any recreational facilities matching your criteria. Please try a different search."
+            
+        # Limit the size of results to avoid token limits
+        results_str = json.dumps(results[:5], indent=2)
+        if len(results_str) > 4000:
+            results_str = results_str[:4000] + "... (truncated)"
+            
+        prompt = SUMMARIZE_RESULTS_PROMPT.format(query=query, results=results_str)
+        
         messages = [
             {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": message.content},
+            {"role": "user", "content": prompt},
         ]
 
         response = await self.client.chat.complete_async(
             model=MISTRAL_MODEL,
             messages=messages,
         )
-
+        
         return response.choices[0].message.content
+
+    async def run(self, message: discord.Message):
+        """Process a user message and return a response"""
+        user_query = message.content
+        
+        try:
+            # Extract parameters from the user's message with delay between requests
+            location_data = await self.extract_parameter(user_query, EXTRACT_LOCATION_PROMPT)
+            await asyncio.sleep(1.5)  # Add delay between API calls
+            
+            activity_data = await self.extract_parameter(user_query, EXTRACT_ACTIVITY_PROMPT)
+            await asyncio.sleep(1.5)  # Add delay between API calls
+            
+            radius_data = await self.extract_parameter(user_query, EXTRACT_RADIUS_PROMPT)
+            await asyncio.sleep(1.5)  # Add delay between API calls
+            
+            limit_data = await self.extract_parameter(user_query, EXTRACT_LIMIT_PROMPT)
+            
+            location = location_data.get("location", "none")
+            activity = activity_data.get("ActivityName", "none")
+            radius = radius_data.get("Radius", "10")
+            limit = limit_data.get("Limit", "5")
+            
+            # Convert to integers with defaults
+            try:
+                radius = int(radius) if radius != "none" else 10
+                limit = int(limit) if limit != "none" else 5
+            except ValueError:
+                radius = 10
+                limit = 5
+                
+            # Cap values
+            radius = min(radius, 50)
+            limit = min(limit, 10)
+            
+            # If no specific location or activity was detected, use Mistral to generate a general response
+            if location == "none":
+                await asyncio.sleep(1.5)  # Add delay before API call
+                messages = [
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user", "content": user_query},
+                ]
+                self.last_request_time = time.time()
+                response = await self.client.chat.complete_async(
+                    model=MISTRAL_MODEL,
+                    messages=messages,
+                )
+                return response.choices[0].message.content
+                
+            # Get coordinates for the location
+            lat, lon = await self.get_coordinates(location)
+            
+            if not lat or not lon:
+                return f"I couldn't find the coordinates for '{location}'. Please try a different location or be more specific."
+                
+            # Search for facilities and recreation areas
+            facilities = await self.search_facilities(lat, lon, activity, radius, limit)
+            rec_areas = await self.search_recreation_areas(lat, lon, activity, radius, limit)
+            
+            # Combine and limit results
+            combined_results = facilities + rec_areas
+            combined_results = combined_results[:limit]
+            
+            # Summarize the results
+            search_summary = f"Looking for {activity if activity != 'none' else 'recreational activities'} near {location} within {radius} miles"
+            
+            # Add delay before final API call
+            await asyncio.sleep(1.5)
+            return await self.summarize_results(search_summary, combined_results)
+            
+        except Exception as e:
+            logger.error(f"Error in run method: {str(e)}")
+            return "I encountered an error while processing your request. Please try again later."

@@ -1,0 +1,93 @@
+2025-03-05 17:34:19,725 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-05 17:35:32,268 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-05 17:35:32,331 - discord.client - INFO - logging in using static token
+2025-03-05 17:35:33,158 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: f58c6942baf01932fade9651a145dee9).
+2025-03-05 17:35:35,203 - discord - INFO - GoForBot#2339 has connected to Discord!
+2025-03-05 17:35:51,539 - discord - INFO - Processing message from the510dude: where can i go fishing in salt lake city?
+2025-03-05 17:35:52,593 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 17:35:52,597 - discord.agent - ERROR - Failed to parse JSON from Mistral response: ```json
+{"location": "Salt Lake City, UT"}
+```
+2025-03-05 17:35:52,899 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-03-05 17:35:52,900 - discord - ERROR - Error processing message: API error occurred: Status 429
+{"message":"Requests rate limit exceeded"}
+2025-03-05 17:35:52,904 - discord - ERROR - Traceback (most recent call last):
+  File "/Users/nickhafer/Desktop/CS 153/ai-agent-main/bot.py", line 76, in on_message
+    response = await agent.run(message)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickhafer/Desktop/CS 153/ai-agent-main/agent.py", line 292, in run
+    activity_data = await self.extract_parameter(user_query, EXTRACT_ACTIVITY_PROMPT)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickhafer/Desktop/CS 153/ai-agent-main/agent.py", line 164, in extract_parameter
+    response = await self.client.chat.complete_async(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/mistralai/chat.py", line 392, in complete_async
+    raise models.SDKError(
+mistralai.models.sdkerror.SDKError: API error occurred: Status 429
+{"message":"Requests rate limit exceeded"}
+
+2025-03-05 17:36:43,845 - discord - INFO - Processing message from the510dude: where can i go fishing in salt lake city
+2025-03-05 17:36:44,601 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 17:36:45,298 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 17:36:45,508 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-03-05 17:36:45,510 - discord - ERROR - Error processing message: API error occurred: Status 429
+{"message":"Requests rate limit exceeded"}
+2025-03-05 17:36:45,510 - discord - ERROR - Traceback (most recent call last):
+  File "/Users/nickhafer/Desktop/CS 153/ai-agent-main/bot.py", line 76, in on_message
+    response = await agent.run(message)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickhafer/Desktop/CS 153/ai-agent-main/agent.py", line 293, in run
+    radius_data = await self.extract_parameter(user_query, EXTRACT_RADIUS_PROMPT)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickhafer/Desktop/CS 153/ai-agent-main/agent.py", line 164, in extract_parameter
+    response = await self.client.chat.complete_async(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/mistralai/chat.py", line 392, in complete_async
+    raise models.SDKError(
+mistralai.models.sdkerror.SDKError: API error occurred: Status 429
+{"message":"Requests rate limit exceeded"}
+
+2025-03-05 17:36:51,384 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-05 17:36:51,449 - discord.client - INFO - logging in using static token
+2025-03-05 17:36:52,394 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 2211bf3bc497bc5122917c20cd32ae54).
+2025-03-05 17:36:54,437 - discord - INFO - GoForBot#2339 has connected to Discord!
+2025-03-05 17:37:04,802 - discord - INFO - Processing message from the510dude: where can i go fishing in salt lake city
+2025-03-05 17:37:05,608 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 17:37:05,609 - discord.agent - ERROR - Failed to parse JSON from Mistral response: ```json
+{"location": "Salt Lake City, UT"}
+```
+2025-03-05 17:37:06,218 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 17:37:06,529 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-03-05 17:37:06,530 - discord - ERROR - Error processing message: API error occurred: Status 429
+{"message":"Requests rate limit exceeded"}
+2025-03-05 17:37:06,532 - discord - ERROR - Traceback (most recent call last):
+  File "/Users/nickhafer/Desktop/CS 153/ai-agent-main/bot.py", line 76, in on_message
+    response = await agent.run(message)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickhafer/Desktop/CS 153/ai-agent-main/agent.py", line 293, in run
+    radius_data = await self.extract_parameter(user_query, EXTRACT_RADIUS_PROMPT)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickhafer/Desktop/CS 153/ai-agent-main/agent.py", line 164, in extract_parameter
+    response = await self.client.chat.complete_async(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/mistralai/chat.py", line 392, in complete_async
+    raise models.SDKError(
+mistralai.models.sdkerror.SDKError: API error occurred: Status 429
+{"message":"Requests rate limit exceeded"}
+
+2025-03-05 17:40:21,756 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-05 17:40:21,830 - discord.client - INFO - logging in using static token
+2025-03-05 17:40:22,633 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 74833884dd889972aba6aadade3576a6).
+2025-03-05 17:40:24,707 - discord - INFO - GoForBot#2339 has connected to Discord!
+2025-03-05 17:42:35,985 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-05 17:42:36,055 - discord.client - INFO - logging in using static token
+2025-03-05 17:42:36,829 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: c7b1d81b48d2bb032a33baa295a3b321).
+2025-03-05 17:42:38,868 - discord - INFO - GoForBot#2339 has connected to Discord!
+2025-03-05 17:42:51,616 - discord - INFO - Processing message from the510dude: where can i go fishing in salt lake city
+2025-03-05 17:42:52,510 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 17:42:54,546 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 17:42:56,700 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 17:42:59,089 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 17:42:59,094 - discord.agent - ERROR - Failed to parse JSON from Mistral response: The message does not explicitly request a limit on the number of results to return. Therefore, the response is:
+
+{"Limit": "5"}

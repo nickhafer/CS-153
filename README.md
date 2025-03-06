@@ -11,9 +11,15 @@ This is the base framework for students to complete the CS 153 final project. Pl
 Your group will be making your very own AI agent and import it into our CS153 server as a Discord App. This starter code provides the framework for a Discord App implemented in Python. Follow the instructions below.
 
 ### Instructional Video
-We have put together a video going through the setup of this starter code, and explaining various pieces of it. We highly recommend giving it a watch!
+We've put together a video going through the setup of this starter code, and explaining various pieces of it. We highly recommend giving it a watch!
 
 [![Image 1224x834 Small](https://github.com/user-attachments/assets/990c87bc-17f8-44a6-8c0b-c313a8a04693)](https://drive.google.com/file/d/1doJQYJjCHA0fuOQ8hP3mcmDRORq7E28v/view)
+
+### Cursor Tutorial
+We've put together a short tutorial on how to use the Cursor IDE for building your projects. Run Cmd(ctrl)-I to open the composer if it doesn't show up for you!
+
+[![Frame 11](https://github.com/user-attachments/assets/2a4442ca-4170-40e2-b7b7-e163ae450801)](https://drive.google.com/file/d/1XFs17kZvEUx2xFLVistcdDuHnGFXU93a/view?usp=drive_link)
+
 
 ### Join the Discord Server
 
