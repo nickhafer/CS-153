@@ -237,3 +237,62 @@ In content: Must be 2000 or fewer in length.
 2025-03-05 18:26:07,531 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
 2025-03-05 18:26:09,532 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
 2025-03-05 18:26:22,621 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 19:32:23,082 - discord.client - ERROR - Attempting a reconnect in 0.39s
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/client.py", line 704, in connect
+    await self.ws.poll_event()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/gateway.py", line 627, in poll_event
+    await self.received_message(msg.data)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/gateway.py", line 532, in received_message
+    await self.send_as_json(beat)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/gateway.py", line 663, in send_as_json
+    await self.send(utils._to_json(data))
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/gateway.py", line 659, in send
+    await self.socket.send_str(data)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/client_ws.py", line 245, in send_str
+    await self._writer.send_frame(
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/_websocket/writer.py", line 125, in send_frame
+    raise ClientConnectionResetError("Cannot write to closing transport")
+aiohttp.client_exceptions.ClientConnectionResetError: Cannot write to closing transport
+2025-03-05 19:32:23,841 - discord.gateway - INFO - Shard ID None has successfully RESUMED session de94ed0d331cd59d8be15d476066a85a.
+2025-03-05 19:34:46,314 - discord.gateway - INFO - Shard ID None has successfully RESUMED session de94ed0d331cd59d8be15d476066a85a.
+2025-03-05 19:36:43,157 - discord.gateway - INFO - Shard ID None has successfully RESUMED session de94ed0d331cd59d8be15d476066a85a.
+2025-03-05 19:38:46,667 - discord.gateway - INFO - Shard ID None has successfully RESUMED session de94ed0d331cd59d8be15d476066a85a.
+2025-03-05 19:45:50,395 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-05 19:45:56,135 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 1b5ca937ec1219997efee434f8e6f0ce).
+2025-03-05 19:45:58,167 - discord - INFO - GoForBot#2339 has connected to Discord!
+2025-03-05 19:46:46,301 - discord.gateway - WARNING - Can't keep up, shard ID None websocket is 33.3s behind.
+2025-03-05 19:53:47,853 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-05 19:53:53,369 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 21293cd8d3d129a696f785f1073aa962).
+2025-03-05 19:53:55,429 - discord - INFO - GoForBot#2339 has connected to Discord!
+2025-03-05 19:54:37,843 - discord.gateway - WARNING - Can't keep up, shard ID None websocket is 38.8s behind.
+2025-03-05 19:56:26,550 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 21293cd8d3d129a696f785f1073aa962.
+2025-03-05 19:58:05,226 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 21293cd8d3d129a696f785f1073aa962.
+2025-03-05 20:01:56,814 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-05 20:02:02,383 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 5be4241b039d159a1d0561e3704eb7c4).
+2025-03-05 20:02:04,451 - discord - INFO - GoForBot#2339 has connected to Discord!
+2025-03-05 20:03:54,675 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 5be4241b039d159a1d0561e3704eb7c4.
+2025-03-05 20:06:18,763 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-05 20:06:24,209 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 9faef6a6bb065f515be260ca7fb36963).
+2025-03-05 20:06:26,239 - discord - INFO - GoForBot#2339 has connected to Discord!
+2025-03-05 20:13:26,158 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-05 20:13:31,888 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: af1e8b3c5c01a2c998710952ee94d8e2).
+2025-03-05 20:13:33,947 - discord - INFO - GoForBot#2339 has connected to Discord!
+2025-03-05 20:14:16,464 - discord.gateway - WARNING - Can't keep up, shard ID None websocket is 26.3s behind.
+2025-03-05 20:16:46,929 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-05 20:16:52,532 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 1f8ee63deb755ae3c11c3c813f0c8a99).
+2025-03-05 20:16:54,559 - discord - INFO - GoForBot#2339 has connected to Discord!
+2025-03-05 20:19:50,629 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-05 20:19:56,094 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 165381ba41c4a369f2b2f0c0eb22b778).
+2025-03-05 20:19:58,141 - discord - INFO - GoForBot#2339 has connected to Discord!
+2025-03-05 20:22:39,003 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-05 20:22:44,475 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 5cfa6d0283b71c6d1e26e7c272da11bd).
+2025-03-05 20:22:46,524 - discord - INFO - GoForBot#2339 has connected to Discord!
+2025-03-05 20:24:13,506 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 5cfa6d0283b71c6d1e26e7c272da11bd.
+2025-03-05 20:39:53,091 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-05 20:39:58,650 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 2d2caaa40a30908f9b122ed6a4393df9).
+2025-03-05 20:40:00,675 - discord - INFO - GoForBot#2339 has connected to Discord!
+2025-03-05 20:41:58,928 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-05 20:41:59,001 - discord.client - INFO - logging in using static token
+2025-03-05 20:42:00,020 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: cb035cdd1733233120c77bf8d5da3edf).
+2025-03-05 20:42:02,127 - discord - INFO - GoForBot#2339 has connected to Discord!
