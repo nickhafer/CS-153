@@ -1287,3 +1287,48 @@ aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gatewa
 2025-03-11 11:39:45,147 - discord.agent - INFO - Summary includes proper formatting for multiple results
 2025-03-11 11:39:45,148 - discord.agent - INFO - Added missing divider for supplementary results
 2025-03-11 11:39:45,148 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages
+2025-03-11 11:44:28,742 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-11 11:44:28,810 - discord.client - INFO - logging in using static token
+2025-03-11 11:44:29,637 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 0b1eddbc5c7cf872a20680db244136a9).
+2025-03-11 11:44:31,679 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 11:44:39,869 - discord - INFO - Processing message from the510dude: where can i go hiking near palo alto, ca?
+2025-03-11 11:44:40,783 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:44:42,866 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:44:46,303 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:44:49,111 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:44:49,116 - discord.agent - INFO - Saved location for user 152253205668036608: Palo Alto, CA
+2025-03-11 11:44:49,117 - discord.agent - INFO - Saved activity for user 152253205668036608: HIKING
+2025-03-11 11:44:49,541 - discord.agent - INFO - Searching for HIKING near Palo Alto, CA within 25 miles with limit 5
+2025-03-11 11:44:49,541 - discord.agent - INFO - Searching facilities with params: {'latitude': '37.4443293', 'longitude': '-122.1598465', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-11 11:44:50,837 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '37.4443293', 'longitude': '-122.1598465', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-11 11:44:51,674 - discord.agent - INFO - Found 1 facilities and 1 recreation areas
+2025-03-11 11:44:51,675 - discord.agent - INFO - Not enough results from RIDB (found 2, need 5). Generating 3 supplementary results.
+2025-03-11 11:44:51,675 - discord.agent - INFO - Generating 3 supplementary results for HIKING near Palo Alto, CA
+2025-03-11 11:45:00,785 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:45:00,791 - discord.agent - INFO - Added 3 supplementary results. New total: 5
+2025-03-11 11:45:00,792 - discord.agent - INFO - Final combined results: 5
+2025-03-11 11:45:23,109 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:45:23,116 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-11 11:45:23,116 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages
+2025-03-11 11:46:58,405 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-11 11:46:58,472 - discord.client - INFO - logging in using static token
+2025-03-11 11:46:59,146 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: f9e409656e38f157f4cad80a36616515).
+2025-03-11 11:47:01,300 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 11:47:06,857 - discord - INFO - Processing message from the510dude: where can i go hiking near palo alto, ca?
+2025-03-11 11:47:07,762 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:47:09,811 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:47:12,125 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:47:15,544 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:47:15,548 - discord.agent - INFO - Saved location for user 152253205668036608: Palo Alto, CA
+2025-03-11 11:47:15,775 - discord.agent - INFO - Searching for none near Palo Alto, CA within 25 miles with limit 5
+2025-03-11 11:47:15,775 - discord.agent - INFO - Searching facilities with params: {'latitude': '37.4443293', 'longitude': '-122.1598465', 'radius': 25, 'limit': 15, 'full': 'true'}
+2025-03-11 11:47:16,878 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '37.4443293', 'longitude': '-122.1598465', 'radius': 25, 'limit': 15, 'full': 'true'}
+2025-03-11 11:47:17,899 - discord.agent - INFO - Found 1 facilities and 1 recreation areas
+2025-03-11 11:47:17,899 - discord.agent - INFO - Not enough results from RIDB (found 2, need 5). Generating 3 supplementary results.
+2025-03-11 11:47:17,900 - discord.agent - INFO - Generating 3 supplementary results for none near Palo Alto, CA
+2025-03-11 11:47:31,556 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:47:31,562 - discord.agent - INFO - Added 3 supplementary results. New total: 5
+2025-03-11 11:47:31,563 - discord.agent - INFO - Final combined results: 5
+2025-03-11 11:47:51,900 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:47:51,905 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-11 11:47:51,905 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages

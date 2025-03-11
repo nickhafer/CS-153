@@ -6,6 +6,7 @@ from discord.ext import commands
 from dotenv import load_dotenv
 from agent import MistralAgent
 import asyncio
+import random
 
 PREFIX = "!"
 
@@ -92,28 +93,35 @@ async def on_message(message: discord.Message):
             ]
             
             # Send a temporary message that we'll update
-            temp_msg = await message.reply(temp_messages[0])
+            temp_msg = await message.reply(temp_messages[random.randint(0, len(temp_messages) - 1)])
+            
+            # Create a stop event for the rotation task
+            stop_rotation = asyncio.Event()
             
             # Start a background task to rotate through the messages
-            temp_msg_task = asyncio.create_task(rotate_temp_messages(temp_msg, temp_messages))
+            rotation_task = asyncio.create_task(
+                rotate_temp_messages(temp_msg, temp_messages, stop_rotation)
+            )
             
             # Get response from agent
             response = await agent.run(message)
             
-            # Cancel the temporary message rotation task
-            temp_msg_task.cancel()
+            # Signal the rotation task to stop
+            stop_rotation.set()
+            # Wait for the rotation task to complete
+            await rotation_task
             
-            # Check if the response is a list of chunks
+            # Delete the temporary message regardless of response type
+            await temp_msg.delete()
+            
+            # Check if the response is a list of chunks or a single message
             if isinstance(response, list):
-                # Delete the temporary message
-                await temp_msg.delete()
-                
-                # Send each chunk as a separate message
+                # Send each chunk as a separate message IN ORDER
                 for chunk in response:
                     await message.channel.send(chunk)
             else:
-                # Replace the temporary message with the actual response
-                await temp_msg.edit(content=response)
+                # Send the response as a new message instead of editing
+                await message.channel.send(response)
             
         except Exception as e:
             logger.error(f"Error processing message: {str(e)}")
@@ -121,17 +129,15 @@ async def on_message(message: discord.Message):
             await message.reply("I encountered an error while processing your request. Please try again later.")
 
 
-async def rotate_temp_messages(message, messages):
+async def rotate_temp_messages(message, messages, stop_event):
     """Rotate through temporary messages while waiting for the real response"""
     try:
         index = 1  # Start at 1 since we already used index 0
-        while True:
-            await asyncio.sleep(3)  # Wait 3 seconds between message updates
-            await message.edit(content=messages[index % len(messages)])
-            index += 1
-    except asyncio.CancelledError:
-        # Task was cancelled, which is expected when the real response is ready
-        pass
+        while not stop_event.is_set():
+            await asyncio.sleep(6)  # Wait 3 seconds between message updates
+            if not stop_event.is_set():  # Check again after the sleep
+                await message.edit(content=messages[index % len(messages)])
+                index += 1
     except Exception as e:
         logger.error(f"Error in rotate_temp_messages: {str(e)}")
 
