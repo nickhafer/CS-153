@@ -133,11 +133,32 @@ async def rotate_temp_messages(message, messages, stop_event):
     """Rotate through temporary messages while waiting for the real response"""
     try:
         index = 1  # Start at 1 since we already used index 0
+        start_time = asyncio.get_event_loop().time()
+        total_duration = 45.0  # Total duration in seconds
+        update_interval = 3.0  # Update every 3 seconds
+        
         while not stop_event.is_set():
-            await asyncio.sleep(6)  # Wait 3 seconds between message updates
-            if not stop_event.is_set():  # Check again after the sleep
-                await message.edit(content=messages[index % len(messages)])
+            # Calculate progress (0.0 to 1.0)
+            elapsed = asyncio.get_event_loop().time() - start_time
+            progress = min(elapsed / total_duration, 1.0)
+            
+            # Create loading bar
+            bar_length = 20
+            filled_length = int(bar_length * progress)
+            bar = '█' * filled_length + '░' * (bar_length - filled_length)
+            percent = int(progress * 100)
+            
+            # Format message with loading bar
+            loading_message = f"{messages[index % len(messages)]}\n\n`[{bar}] {percent}%`"
+            
+            # Update message if not stopped
+            if not stop_event.is_set():
+                await message.edit(content=loading_message)
                 index += 1
+                
+            # Wait for next update
+            await asyncio.sleep(update_interval)
+            
     except Exception as e:
         logger.error(f"Error in rotate_temp_messages: {str(e)}")
 
