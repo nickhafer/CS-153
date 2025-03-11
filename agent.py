@@ -87,7 +87,7 @@ Response: {"ActivityName": "none"}
 
 EXTRACT_RADIUS_PROMPT = """
 Is this message explicitly requesting recreation information for a specific radius?
-If not, return {"Radius": "10"}.
+If not, return {"Radius": "25"}.
 
 Otherwise, return the radius specified. If the value is greater than 50, return 50.
 
@@ -216,7 +216,7 @@ class MistralAgent:
                         elif "ActivityName" in prompt:
                             return {"ActivityName": "none"}
                         elif "Radius" in prompt:
-                            return {"Radius": "10"}
+                            return {"Radius": "25"}
                         elif "Limit" in prompt:
                             return {"Limit": "5"}
                         return {}
@@ -229,7 +229,7 @@ class MistralAgent:
                     elif "ActivityName" in prompt:
                         return {"ActivityName": "none"}
                     elif "Radius" in prompt:
-                        return {"Radius": "10"}
+                        return {"Radius": "25"}
                     elif "Limit" in prompt:
                         return {"Limit": "5"}
                     return {}
@@ -253,7 +253,7 @@ class MistralAgent:
                     elif "ActivityName" in prompt:
                         return {"ActivityName": "none"}
                     elif "Radius" in prompt:
-                        return {"Radius": "10"}
+                        return {"Radius": "25"}
                     elif "Limit" in prompt:
                         return {"Limit": "5"}
                     return {}
@@ -289,12 +289,14 @@ class MistralAgent:
             "latitude": lat,
             "longitude": lon,
             "radius": radius,
-            "limit": limit,
+            "limit": limit,  # Use the provided limit directly
             "full": "true"
         }
         
         if activity and activity != "none":
             params["activity"] = activity
+            
+        logger.info(f"Searching facilities with params: {params}")
             
         async with aiohttp.ClientSession() as session:
             url = f"{self.base_url}/facilities"
@@ -317,12 +319,14 @@ class MistralAgent:
             "latitude": lat,
             "longitude": lon,
             "radius": radius,
-            "limit": limit * 2,  # Double the limit to ensure we get enough results
+            "limit": limit,  # Use the provided limit directly
             "full": "true"
         }
         
         if activity and activity != "none":
             params["activity"] = activity
+            
+        logger.info(f"Searching recreation areas with params: {params}")
             
         async with aiohttp.ClientSession() as session:
             url = f"{self.base_url}/recareas"
@@ -403,7 +407,7 @@ class MistralAgent:
             
             location = location_data.get("location", "none")
             activity = activity_data.get("ActivityName", "none")
-            radius = radius_data.get("Radius", "10")
+            radius = radius_data.get("Radius", "25")
             limit = limit_data.get("Limit", "5")
             
             # If this is a follow-up to a failed search and no new location specified, use the previous one
@@ -418,10 +422,10 @@ class MistralAgent:
             
             # Convert to integers with defaults
             try:
-                radius = int(radius) if radius != "none" else 10
+                radius = int(radius) if radius != "none" else 25
                 limit = int(limit) if limit != "none" else 5
             except ValueError:
-                radius = 10
+                radius = 25
                 limit = 5
                 
             # If this is a follow-up to a failed search, start with a larger radius
@@ -440,6 +444,9 @@ class MistralAgent:
             # Cap values
             radius = min(radius, 50)
             limit = min(limit, 10)
+            
+            # Ensure we get at least 3 results by default
+            min_results = 3
             
             # If no specific location or activity was detected, use Mistral to generate a general response
             if location == "none":
@@ -491,12 +498,21 @@ class MistralAgent:
                     self.conversation_history[user_id].pop(0)
                     
                 return response_text
-                
-            # Search for facilities and recreation areas
-            facilities = await self.search_facilities(lat, lon, activity, radius, limit)
-            rec_areas = await self.search_recreation_areas(lat, lon, activity, radius, limit)
             
-            # Combine results - don't limit individual searches
+            # Log the search parameters for debugging
+            logger.info(f"Searching for {activity} near {location} within {radius} miles with limit {limit}")
+                
+            # Search for facilities and recreation areas with initial radius
+            # Use a higher limit to ensure we get enough results
+            api_limit = max(limit * 3, 10)  # At least 10 results from each API
+            
+            facilities = await self.search_facilities(lat, lon, activity, radius, api_limit)
+            rec_areas = await self.search_recreation_areas(lat, lon, activity, radius, api_limit)
+            
+            # Log the number of results found
+            logger.info(f"Found {len(facilities)} facilities and {len(rec_areas)} recreation areas")
+            
+            # Combine results
             combined_results = []
             
             # Add facilities with source
@@ -509,19 +525,74 @@ class MistralAgent:
                 rec_area['source'] = 'rec_area'
                 combined_results.append(rec_area)
             
-            # Sort combined results by distance if available
-            if combined_results and ('RecAreaDistance' in combined_results[0] or 'FacilityDistance' in combined_results[0]):
-                combined_results.sort(key=lambda x: float(x.get('RecAreaDistance', x.get('FacilityDistance', float('inf')))))
+            # If we don't have enough results, try with an expanded radius
+            # BUT ONLY if the user didn't explicitly specify a radius
+            original_radius = radius
+            auto_expanded = False
             
-            # Take more results (up to 10) to ensure variety
+            if len(combined_results) < min_results and radius < 50 and radius_data.get("Radius") == "10":
+                auto_expanded = True
+                # Try with progressively larger radii until we get enough results or hit the max
+                for expanded_radius in [25, 50]:
+                    if expanded_radius <= radius:
+                        continue
+                        
+                    logger.info(f"Not enough results ({len(combined_results)}). Expanding search to {expanded_radius} miles.")
+                    radius = expanded_radius
+                    
+                    # Search again with expanded radius
+                    expanded_facilities = await self.search_facilities(lat, lon, activity, radius, api_limit)
+                    expanded_rec_areas = await self.search_recreation_areas(lat, lon, activity, radius, api_limit)
+                    
+                    # Log the number of results found with expanded radius
+                    logger.info(f"Found {len(expanded_facilities)} facilities and {len(expanded_rec_areas)} recreation areas with expanded radius {radius}")
+                    
+                    # Clear previous results and add new ones
+                    combined_results = []
+                    
+                    # Add facilities with source
+                    for facility in expanded_facilities:
+                        facility['source'] = 'facility'
+                        combined_results.append(facility)
+                        
+                    # Add rec areas with source
+                    for rec_area in expanded_rec_areas:
+                        rec_area['source'] = 'rec_area'
+                        combined_results.append(rec_area)
+                        
+                    # If we have enough results now, break
+                    if len(combined_results) >= min_results:
+                        break
+            
+            # Sort combined results by distance if available
+            if combined_results:
+                # Create a function to safely extract distance
+                def get_distance(item):
+                    if 'RecAreaDistance' in item:
+                        return float(item.get('RecAreaDistance', float('inf')))
+                    elif 'FacilityDistance' in item:
+                        return float(item.get('FacilityDistance', float('inf')))
+                    else:
+                        return float('inf')
+                
+                combined_results.sort(key=get_distance)
+            
+            # Take up to 10 results to ensure variety
             combined_results = combined_results[:10]
+            
+            # Log the final number of results
+            logger.info(f"Final combined results: {len(combined_results)}")
             
             # Summarize the results
             if not combined_results:
                 search_summary = f"Looking for {activity if activity != 'none' else 'recreational activities'} near {location} within {radius} miles"
                 no_results = True
             else:
-                search_summary = f"Looking for {activity if activity != 'none' else 'recreational activities'} near {location} within {radius} miles"
+                # If we expanded the radius automatically, mention it in the summary ONLY if we actually expanded
+                if auto_expanded and radius > original_radius:
+                    search_summary = f"Looking for {activity if activity != 'none' else 'recreational activities'} near {location} within {original_radius} miles"
+                else:
+                    search_summary = f"Looking for {activity if activity != 'none' else 'recreational activities'} near {location} within {radius} miles"
                 no_results = False
             
             # Add delay before final API call

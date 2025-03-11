@@ -458,3 +458,84 @@ aiohttp.client_exceptions.ClientConnectionResetError: Cannot write to closing tr
 2025-03-10 20:10:17,974 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
 2025-03-10 20:10:20,219 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
 2025-03-10 20:10:29,955 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:01:45,753 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-10 21:01:45,817 - discord.client - INFO - logging in using static token
+2025-03-10 21:01:46,839 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: ea5b52cb0366ac8d069fa604457cec53).
+2025-03-10 21:01:48,873 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-10 21:01:57,038 - discord - INFO - Processing message from the510dude: where can i go hiking within 50 miles of palo alto, ca
+2025-03-10 21:01:58,059 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:02:00,203 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:02:02,237 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:02:04,707 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:02:15,090 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:06:52,383 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-10 21:06:52,447 - discord.client - INFO - logging in using static token
+2025-03-10 21:06:53,297 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: e09685805fa919d21e65d2a731fd41c0).
+2025-03-10 21:06:55,328 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-10 21:07:12,009 - discord - INFO - Processing message from the510dude: where can i go hiking within 25 miles of palo alto, ca
+2025-03-10 21:07:12,921 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:07:15,187 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:07:17,143 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:07:19,588 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:07:22,248 - discord.agent - INFO - Not enough results (2). Expanding search to 50 miles.
+2025-03-10 21:07:32,963 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:11:05,554 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-10 21:11:05,618 - discord.client - INFO - logging in using static token
+2025-03-10 21:11:06,610 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: b45fcd342e858d47a8d0d19d09892c24).
+2025-03-10 21:11:08,633 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-10 21:11:52,897 - discord - INFO - Processing message from the510dude: where can i go hiking within 25 miles of palo alto, ca
+2025-03-10 21:11:54,125 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:11:56,379 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:11:58,424 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:12:00,881 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:12:01,110 - discord.agent - INFO - Searching for HIKING near Palo Alto, CA within 25 miles with limit 5
+2025-03-10 21:12:01,110 - discord.agent - INFO - Searching facilities with params: {'latitude': '37.4443293', 'longitude': '-122.1598465', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-10 21:12:02,523 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '37.4443293', 'longitude': '-122.1598465', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-10 21:12:03,649 - discord.agent - INFO - Found 1 facilities and 1 recreation areas
+2025-03-10 21:12:03,650 - discord.agent - INFO - Final combined results: 2
+2025-03-10 21:12:27,711 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:12:52,676 - discord - INFO - Processing message from the510dude: where can i go hiking within 35 miles of palo alto, ca
+2025-03-10 21:12:53,722 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:12:55,850 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:12:57,832 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:13:00,241 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:13:00,423 - discord.agent - INFO - Searching for HIKING near Palo Alto, CA within 35 miles with limit 5
+2025-03-10 21:13:00,423 - discord.agent - INFO - Searching facilities with params: {'latitude': '37.4443293', 'longitude': '-122.1598465', 'radius': 35, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-10 21:13:01,717 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '37.4443293', 'longitude': '-122.1598465', 'radius': 35, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-10 21:13:02,841 - discord.agent - INFO - Found 1 facilities and 1 recreation areas
+2025-03-10 21:13:02,842 - discord.agent - INFO - Final combined results: 2
+2025-03-10 21:13:12,989 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:17:21,542 - discord - INFO - Processing message from the510dude: where can i go hiking in the bay area
+2025-03-10 21:17:24,377 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:17:26,526 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:17:29,089 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:17:31,447 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:17:53,559 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:18:26,835 - discord - INFO - Processing message from the510dude: where can i go camping in the bay area
+2025-03-10 21:18:27,967 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:18:30,119 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:18:32,881 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:18:34,905 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:18:35,083 - discord.agent - INFO - Searching for CAMPING near Bay Area, CA within 10 miles with limit 5
+2025-03-10 21:18:35,084 - discord.agent - INFO - Searching facilities with params: {'latitude': '37.7884969', 'longitude': '-122.3558473', 'radius': 10, 'limit': 15, 'full': 'true', 'activity': 'CAMPING'}
+2025-03-10 21:18:36,467 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '37.7884969', 'longitude': '-122.3558473', 'radius': 10, 'limit': 15, 'full': 'true', 'activity': 'CAMPING'}
+2025-03-10 21:18:37,506 - discord.agent - INFO - Found 4 facilities and 0 recreation areas
+2025-03-10 21:18:37,506 - discord.agent - INFO - Final combined results: 4
+2025-03-10 21:18:45,894 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:21:04,027 - discord - INFO - Processing message from the510dude: where can i go camping in the bay area
+2025-03-10 21:21:05,564 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:21:07,611 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:21:10,274 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:21:12,424 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:21:12,573 - discord.agent - INFO - Searching for CAMPING near Bay Area, CA within 10 miles with limit 5
+2025-03-10 21:21:12,573 - discord.agent - INFO - Searching facilities with params: {'latitude': '37.7884969', 'longitude': '-122.3558473', 'radius': 10, 'limit': 15, 'full': 'true', 'activity': 'CAMPING'}
+2025-03-10 21:21:13,758 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '37.7884969', 'longitude': '-122.3558473', 'radius': 10, 'limit': 15, 'full': 'true', 'activity': 'CAMPING'}
+2025-03-10 21:21:14,676 - discord.agent - INFO - Found 4 facilities and 0 recreation areas
+2025-03-10 21:21:14,677 - discord.agent - INFO - Final combined results: 4
+2025-03-10 21:21:21,846 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:21:35,851 - discord - INFO - Processing message from the510dude: where can i go camping in the bay area within 50 miles
+2025-03-10 21:21:38,637 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:21:40,890 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:21:43,554 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:21:45,558 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 21:22:04,239 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
