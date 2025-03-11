@@ -166,8 +166,9 @@ class MistralAgent:
         self.last_request_time = 0
         self.request_interval = 1.0  # Minimum time between requests in seconds
         
-        # Add conversation memory
+        # Enhanced conversation memory with user context
         self.conversation_history = defaultdict(list)
+        self.user_context = defaultdict(dict)  # Store user-specific context like location
         self.max_history_length = 5  # Keep last 5 interactions per user
 
     async def extract_parameter(self, message_content, prompt):
@@ -338,7 +339,7 @@ class MistralAgent:
                     logger.error(f"Error searching recreation areas: {response.status}")
                     return []
 
-    async def summarize_results(self, query, results):
+    async def summarize_results(self, query, results, user_id=None):
         """Use Mistral to summarize the search results in a user-friendly way"""
         if not results:
             return "I couldn't find any recreational facilities matching your criteria. Please try a different search. You could try expanding the radius or changing the activity or specifying a different location."
@@ -347,11 +348,17 @@ class MistralAgent:
         results_str = json.dumps(results, indent=2)
         if len(results_str) > 4000:
             results_str = results_str[:4000] + "... (truncated)"
+        
+        # Add context to the system prompt if available
+        system_prompt = SYSTEM_PROMPT
+        if user_id and "last_location" in self.user_context[user_id]:
+            context_note = f"\nNote: The user has previously searched for activities near {self.user_context[user_id]['last_location']}."
+            system_prompt += context_note
             
         prompt = SUMMARIZE_RESULTS_PROMPT.format(query=query, results=results_str)
         
         messages = [
-            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "system", "content": system_prompt},
             {"role": "user", "content": prompt},
         ]
 
@@ -368,6 +375,39 @@ class MistralAgent:
         user_id = str(message.author.id)
         
         try:
+            # Check for follow-up questions about "me" or "my location"
+            location_references = ["near me", "around me", "my area", "my location", "where i am", "close to me"]
+            
+            # Check if this is a follow-up question using the user's saved location
+            is_location_followup = False
+            for ref in location_references:
+                if ref in user_query.lower():
+                    is_location_followup = True
+                    break
+            
+            # If this is a follow-up and we have a saved location, use it
+            if is_location_followup and "last_location" in self.user_context[user_id]:
+                saved_location = self.user_context[user_id]["last_location"]
+                logger.info(f"Using saved location for user {user_id}: {saved_location}")
+                # Replace the reference with the actual location
+                for ref in location_references:
+                    if ref in user_query.lower():
+                        user_query = user_query.lower().replace(ref, f"near {saved_location}")
+                        break
+                logger.info(f"Modified query: {user_query}")
+            
+            # Check if this is a single location name response (likely answering "where are you located?")
+            # This helps capture when a user just responds with their location
+            if len(user_query.split()) <= 3 and "," in user_query:
+                # Check if previous message from bot asked for location
+                if self.conversation_history[user_id] and "location" in self.conversation_history[user_id][-1]["response"].lower():
+                    logger.info(f"Detected location response: {user_query}")
+                    # Save this as the user's location
+                    self.user_context[user_id]["last_location"] = user_query.strip()
+                    logger.info(f"Saved location from direct response: {user_query}")
+                    # Modify query to make it clear this is setting a location
+                    user_query = f"I am in {user_query}. What recreational activities are available near me?"
+            
             # Check conversation history for failed searches
             previous_failed_search = False
             previous_location = None
@@ -414,11 +454,38 @@ class MistralAgent:
             if previous_failed_search and location == "none" and previous_location:
                 location = previous_location
                 logger.info(f"Using previous location: {location}")
+            
+            # If we have a valid location (not "none"), save it in the user's context
+            if location != "none":
+                self.user_context[user_id]["last_location"] = location
+                logger.info(f"Saved location for user {user_id}: {location}")
+            # If no location was detected but we have one in context, use it for activity queries
+            elif location == "none" and "last_location" in self.user_context[user_id]:
+                # Check if this is a query about activities without specifying location
+                activity_keywords = ["hiking", "camping", "fishing", "biking", "climbing", 
+                                    "hunting", "skiing", "swimming", "boating", "wildlife",
+                                    "trails", "parks", "recreation", "outdoor"]
                 
+                has_activity_keyword = False
+                for keyword in activity_keywords:
+                    if keyword in user_query.lower():
+                        has_activity_keyword = True
+                        break
+                
+                # If it seems like an activity question, use the saved location
+                if has_activity_keyword or activity != "none":
+                    location = self.user_context[user_id]["last_location"]
+                    logger.info(f"Using saved location for activity question: {location}")
+            
             # If this is a follow-up to a failed search and no new activity specified, use the previous one
             if previous_failed_search and activity == "none" and previous_activity:
                 activity = previous_activity
                 logger.info(f"Using previous activity: {activity}")
+            
+            # If we have a valid activity (not "none"), save it in the user's context
+            if activity != "none":
+                self.user_context[user_id]["last_activity"] = activity
+                logger.info(f"Saved activity for user {user_id}: {activity}")
             
             # Convert to integers with defaults
             try:
@@ -448,11 +515,37 @@ class MistralAgent:
             # Ensure we get at least 3 results by default
             min_results = 3
             
-            # If no specific location or activity was detected, use Mistral to generate a general response
+            # If still no specific location was detected, ask the user for their location or use Mistral
             if location == "none":
+                # If the user is asking about activities near them but we don't have their location
+                if is_location_followup:
+                    response_text = "I'd be happy to help you find recreational activities near you! Could you please tell me your location (city, state)?"
+                    
+                    # Store in conversation history
+                    self.conversation_history[user_id].append({
+                        "query": user_query,
+                        "response": response_text,
+                        "no_results": False,
+                        "asking_for_location": True
+                    })
+                    
+                    # Limit history size
+                    if len(self.conversation_history[user_id]) > self.max_history_length:
+                        self.conversation_history[user_id].pop(0)
+                        
+                    return response_text
+                
+                # Otherwise, use Mistral to generate a general response
                 await asyncio.sleep(1.5)  # Add delay before API call
+                
+                # Check if we have context to include in the system prompt
+                system_prompt = SYSTEM_PROMPT
+                if "last_location" in self.user_context[user_id]:
+                    context_note = f"\nNote: The user has previously searched for activities near {self.user_context[user_id]['last_location']}."
+                    system_prompt += context_note
+                
                 messages = [
-                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_query},
                 ]
                 self.last_request_time = time.time()
@@ -597,7 +690,7 @@ class MistralAgent:
             
             # Add delay before final API call
             await asyncio.sleep(1.5)
-            response_text = await self.summarize_results(search_summary, combined_results)
+            response_text = await self.summarize_results(search_summary, combined_results, user_id)
             
             # If no results were found, add a suggestion to try again with expanded search
             if no_results:

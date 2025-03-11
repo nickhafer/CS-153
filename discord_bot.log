@@ -539,3 +539,118 @@ aiohttp.client_exceptions.ClientConnectionResetError: Cannot write to closing tr
 2025-03-10 21:21:43,554 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
 2025-03-10 21:21:45,558 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
 2025-03-10 21:22:04,239 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:16:44,708 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-10 22:16:44,782 - discord.client - INFO - logging in using static token
+2025-03-10 22:16:45,606 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 1e17ffa7ab508c17d3f0593c0a736630).
+2025-03-10 22:16:47,705 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-10 22:17:01,670 - discord - INFO - Processing message from the510dude: where can i go hiking near me?
+2025-03-10 22:17:02,694 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:17:05,041 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:17:06,974 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:17:09,000 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:17:09,007 - discord.agent - INFO - Saved activity for user 152253205668036608: HIKING
+2025-03-10 22:17:11,546 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:17:28,003 - discord - INFO - Processing message from the510dude: im located in marin, ca
+2025-03-10 22:17:29,112 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:17:31,267 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:17:34,029 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:17:36,146 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:17:59,629 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:18:12,679 - discord - INFO - Processing message from the510dude: where can i go camping near me?
+2025-03-10 22:18:13,600 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:18:15,652 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:18:17,649 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:18:19,903 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:18:19,904 - discord.agent - INFO - Saved activity for user 152253205668036608: CAMPING
+2025-03-10 22:18:42,342 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:21:00,871 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-10 22:21:00,941 - discord.client - INFO - logging in using static token
+2025-03-10 22:21:01,797 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: cec4f27eb6e030014aaad49a07c98abf).
+2025-03-10 22:21:03,836 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-10 22:21:11,742 - discord - INFO - Processing message from the510dude: where can i go camping near me
+2025-03-10 22:21:12,316 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:21:14,380 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:21:16,844 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:21:18,901 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:21:18,906 - discord.agent - INFO - Saved activity for user 152253205668036608: CAMPING
+2025-03-10 22:21:23,596 - discord - INFO - Processing message from the510dude: marin, ca
+2025-03-10 22:21:23,596 - discord.agent - INFO - Detected location response: marin, ca
+2025-03-10 22:21:23,597 - discord.agent - INFO - Saved location from direct response: marin, ca
+2025-03-10 22:21:25,763 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:21:27,778 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:21:30,182 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:21:32,315 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:21:32,320 - discord.agent - INFO - Saved location for user 152253205668036608: Marin, CA
+2025-03-10 22:21:32,804 - discord.agent - INFO - Searching for none near Marin, CA within 25 miles with limit 5
+2025-03-10 22:21:32,805 - discord.agent - INFO - Searching facilities with params: {'latitude': '38.0409144', 'longitude': '-122.6199638', 'radius': 25, 'limit': 15, 'full': 'true'}
+2025-03-10 22:21:34,071 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '38.0409144', 'longitude': '-122.6199638', 'radius': 25, 'limit': 15, 'full': 'true'}
+2025-03-10 22:21:35,085 - discord.agent - INFO - Found 15 facilities and 13 recreation areas
+2025-03-10 22:21:35,085 - discord.agent - INFO - Final combined results: 10
+2025-03-10 22:21:42,239 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:21:58,535 - discord - INFO - Processing message from the510dude: where can i go hiking where i am
+2025-03-10 22:21:58,537 - discord.agent - INFO - Using saved location for user 152253205668036608: Marin, CA
+2025-03-10 22:21:58,537 - discord.agent - INFO - Modified query: where can i go hiking near Marin, CA
+2025-03-10 22:21:59,181 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:22:01,479 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:22:03,903 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:22:06,302 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:22:06,306 - discord.agent - INFO - Saved location for user 152253205668036608: Marin, CA
+2025-03-10 22:22:06,306 - discord.agent - INFO - Saved activity for user 152253205668036608: HIKING
+2025-03-10 22:22:06,827 - discord.agent - INFO - Searching for HIKING near Marin, CA within 25 miles with limit 5
+2025-03-10 22:22:06,831 - discord.agent - INFO - Searching facilities with params: {'latitude': '38.0409144', 'longitude': '-122.6199638', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-10 22:22:08,056 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '38.0409144', 'longitude': '-122.6199638', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-10 22:22:09,154 - discord.agent - INFO - Found 7 facilities and 4 recreation areas
+2025-03-10 22:22:09,155 - discord.agent - INFO - Final combined results: 10
+2025-03-10 22:22:16,491 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:22:30,323 - discord - INFO - Processing message from the510dude: where can i go fishing within 50 miles of where i am
+2025-03-10 22:22:30,582 - discord.agent - INFO - Using saved location for user 152253205668036608: Marin, CA
+2025-03-10 22:22:30,582 - discord.agent - INFO - Modified query: where can i go fishing within 50 miles of near Marin, CA
+2025-03-10 22:22:31,301 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:22:33,649 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:22:36,213 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:22:38,875 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:22:38,879 - discord.agent - INFO - Saved location for user 152253205668036608: Marin, CA
+2025-03-10 22:22:38,880 - discord.agent - INFO - Saved activity for user 152253205668036608: FISHING
+2025-03-10 22:22:39,352 - discord.agent - INFO - Searching for FISHING near Marin, CA within 50 miles with limit 5
+2025-03-10 22:22:39,353 - discord.agent - INFO - Searching facilities with params: {'latitude': '38.0409144', 'longitude': '-122.6199638', 'radius': 50, 'limit': 15, 'full': 'true', 'activity': 'FISHING'}
+2025-03-10 22:22:40,538 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '38.0409144', 'longitude': '-122.6199638', 'radius': 50, 'limit': 15, 'full': 'true', 'activity': 'FISHING'}
+2025-03-10 22:22:41,646 - discord.agent - INFO - Found 3 facilities and 7 recreation areas
+2025-03-10 22:22:41,647 - discord.agent - INFO - Final combined results: 10
+2025-03-10 22:22:47,565 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:23:09,282 - discord - INFO - Processing message from the510dude: im in palo alto, ca now
+2025-03-10 22:23:10,277 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:23:12,734 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:23:15,291 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:23:17,955 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:23:17,959 - discord.agent - INFO - Saved location for user 152253205668036608: Palo Alto, CA
+2025-03-10 22:23:18,181 - discord.agent - INFO - Searching for none near Palo Alto, CA within 25 miles with limit 5
+2025-03-10 22:23:18,181 - discord.agent - INFO - Searching facilities with params: {'latitude': '37.4443293', 'longitude': '-122.1598465', 'radius': 25, 'limit': 15, 'full': 'true'}
+2025-03-10 22:23:19,330 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '37.4443293', 'longitude': '-122.1598465', 'radius': 25, 'limit': 15, 'full': 'true'}
+2025-03-10 22:23:20,308 - discord.agent - INFO - Found 1 facilities and 1 recreation areas
+2025-03-10 22:23:20,308 - discord.agent - INFO - Final combined results: 2
+2025-03-10 22:23:28,805 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:23:37,680 - discord - INFO - Processing message from the510dude: im in san diego, ca now
+2025-03-10 22:23:39,044 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:23:41,048 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:23:43,752 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:23:45,801 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:23:45,805 - discord.agent - INFO - Saved location for user 152253205668036608: San Diego, CA
+2025-03-10 22:23:45,979 - discord.agent - INFO - Searching for none near San Diego, CA within 25 miles with limit 5
+2025-03-10 22:23:45,980 - discord.agent - INFO - Searching facilities with params: {'latitude': '32.7174202', 'longitude': '-117.162772', 'radius': 25, 'limit': 15, 'full': 'true'}
+2025-03-10 22:23:47,135 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '32.7174202', 'longitude': '-117.162772', 'radius': 25, 'limit': 15, 'full': 'true'}
+2025-03-10 22:23:47,957 - discord.agent - INFO - Found 3 facilities and 6 recreation areas
+2025-03-10 22:23:47,958 - discord.agent - INFO - Final combined results: 9
+2025-03-10 22:23:54,712 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:24:29,425 - discord - INFO - Processing message from the510dude: where can i go fishing within 25 miles of san diego, ca
+2025-03-10 22:24:30,659 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:24:33,037 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:24:35,158 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:24:37,524 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:24:37,528 - discord.agent - INFO - Saved location for user 152253205668036608: San Diego, CA
+2025-03-10 22:24:37,528 - discord.agent - INFO - Saved activity for user 152253205668036608: FISHING
+2025-03-10 22:24:37,728 - discord.agent - INFO - Searching for FISHING near San Diego, CA within 25 miles with limit 5
+2025-03-10 22:24:37,729 - discord.agent - INFO - Searching facilities with params: {'latitude': '32.7174202', 'longitude': '-117.162772', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'FISHING'}
+2025-03-10 22:24:38,945 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '32.7174202', 'longitude': '-117.162772', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'FISHING'}
+2025-03-10 22:24:40,331 - discord.agent - INFO - Found 0 facilities and 1 recreation areas
+2025-03-10 22:24:40,331 - discord.agent - INFO - Final combined results: 1
+2025-03-10 22:24:47,138 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
