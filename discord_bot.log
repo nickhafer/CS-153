@@ -1215,3 +1215,51 @@ aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gatewa
 2025-03-11 11:24:02,590 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
 2025-03-11 11:24:02,596 - discord.agent - INFO - Summary includes proper formatting for multiple results
 2025-03-11 11:24:02,597 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages
+2025-03-11 11:29:59,979 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-11 11:30:00,048 - discord.client - INFO - logging in using static token
+2025-03-11 11:30:00,924 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 11afe965c6090cb58206b7a5c2b7e413).
+2025-03-11 11:30:02,955 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 11:30:08,620 - discord - INFO - Processing message from the510dude: where can i go hiking near palo alto, ca
+2025-03-11 11:30:10,723 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:30:12,880 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:30:15,326 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:30:19,040 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:30:19,047 - discord.agent - INFO - Saved location for user 152253205668036608: Palo Alto, CA
+2025-03-11 11:30:19,047 - discord.agent - INFO - Saved activity for user 152253205668036608: HIKING
+2025-03-11 11:30:19,333 - discord.agent - INFO - Searching for HIKING near Palo Alto, CA within 25 miles with limit 5
+2025-03-11 11:30:19,333 - discord.agent - INFO - Searching facilities with params: {'latitude': '37.4443293', 'longitude': '-122.1598465', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-11 11:30:20,555 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '37.4443293', 'longitude': '-122.1598465', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-11 11:30:21,675 - discord.agent - INFO - Found 1 facilities and 1 recreation areas
+2025-03-11 11:30:21,676 - discord.agent - INFO - Not enough results from RIDB (found 2, need 5). Generating 3 supplementary results.
+2025-03-11 11:30:21,676 - discord.agent - INFO - Generating 3 supplementary results for HIKING near Palo Alto, CA
+2025-03-11 11:30:30,426 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:30:30,432 - discord.agent - INFO - Added 3 supplementary results. New total: 5
+2025-03-11 11:30:30,432 - discord.agent - INFO - Final combined results: 5
+2025-03-11 11:30:56,697 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:30:56,702 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-11 11:30:56,702 - discord.agent - INFO - Added missing divider for supplementary results
+2025-03-11 11:30:56,702 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages
+2025-03-11 11:33:18,645 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-11 11:33:18,716 - discord.client - INFO - logging in using static token
+2025-03-11 11:33:19,527 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 556e46e3714a5c9a4393ce3ea45efc61).
+2025-03-11 11:33:21,568 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 11:33:28,597 - discord - INFO - Processing message from the510dude: where can i go hiking near palo alto, ca
+2025-03-11 11:33:33,640 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:33:41,458 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:33:45,143 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:33:47,825 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:33:47,829 - discord.agent - INFO - Saved location for user 152253205668036608: Palo Alto, CA
+2025-03-11 11:33:47,829 - discord.agent - INFO - Saved activity for user 152253205668036608: HIKING
+2025-03-11 11:33:48,078 - discord.agent - INFO - Searching for HIKING near Palo Alto, CA within 25 miles with limit 5
+2025-03-11 11:33:48,078 - discord.agent - INFO - Searching facilities with params: {'latitude': '37.4443293', 'longitude': '-122.1598465', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-11 11:33:49,283 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '37.4443293', 'longitude': '-122.1598465', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-11 11:33:50,332 - discord.agent - INFO - Found 1 facilities and 1 recreation areas
+2025-03-11 11:33:50,332 - discord.agent - INFO - Not enough results from RIDB (found 2, need 5). Generating 3 supplementary results.
+2025-03-11 11:33:50,332 - discord.agent - INFO - Generating 3 supplementary results for HIKING near Palo Alto, CA
+2025-03-11 11:33:58,380 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:33:58,385 - discord.agent - INFO - Added 3 supplementary results. New total: 5
+2025-03-11 11:33:58,386 - discord.agent - INFO - Final combined results: 5
+2025-03-11 11:34:29,531 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:34:29,535 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-11 11:34:29,535 - discord.agent - INFO - Added missing divider for supplementary results
+2025-03-11 11:34:29,535 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages
