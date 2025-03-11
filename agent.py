@@ -135,17 +135,18 @@ SUMMARIZE_RESULTS_PROMPT = """
 You are a helpful assistant that provides information about recreational activities and facilities in the United States.
 
 Below are the results from a search for recreational facilities. You MUST summarize ALL of these results in a friendly, informative way.
-For EACH facility/area, include:
-- Name and type of facility
-- Brief description
-- Location
-- Key amenities or features
-- Any special notes
 
-Format the information in a clear, readable way using numbered lists or bullet points to separate each location.
+For EACH facility/area, include:
+1. Name and type of facility
+2. Brief description
+3. Location
+4. Key amenities or features
+5. Any special notes
+
+Format the information using a NUMBERED LIST (1., 2., 3., etc.) to clearly separate each location.
 If there are no results, politely inform the user and suggest they try a different search.
 
-Remember: You must include ALL results provided (up to 10 locations). Do not limit your response to just one location unless only one result was found.
+IMPORTANT: You must include EVERY result provided. Do not limit your response to just one location unless only one result was found. The user specifically wants to see ALL options.
 
 Search query: {query}
 Search results: {results}
@@ -344,6 +345,9 @@ class MistralAgent:
         if not results:
             return "I couldn't find any recreational facilities matching your criteria. Please try a different search. You could try expanding the radius or changing the activity or specifying a different location."
             
+        # Count the number of results for verification
+        num_results = len(results)
+        
         # Don't limit to just 5 results anymore
         results_str = json.dumps(results, indent=2)
         if len(results_str) > 4000:
@@ -354,20 +358,55 @@ class MistralAgent:
         if user_id and "last_location" in self.user_context[user_id]:
             context_note = f"\nNote: The user has previously searched for activities near {self.user_context[user_id]['last_location']}."
             system_prompt += context_note
-            
-        prompt = SUMMARIZE_RESULTS_PROMPT.format(query=query, results=results_str)
+        
+        # Make the instructions more explicit
+        summarize_prompt = SUMMARIZE_RESULTS_PROMPT.format(query=query, results=results_str)
+        
+        # Add explicit instruction about the number of results
+        summarize_prompt += f"\n\nIMPORTANT: There are {num_results} results in total. You MUST include ALL {num_results} results in your summary, not just one or two. Number each result clearly."
         
         messages = [
             {"role": "system", "content": system_prompt},
-            {"role": "user", "content": prompt},
+            {"role": "user", "content": summarize_prompt},
         ]
 
-        response = await self.client.chat.complete_async(
-            model=MISTRAL_MODEL,
-            messages=messages,
-        )
+        # Try up to 2 times to get a good summary
+        for attempt in range(2):
+            response = await self.client.chat.complete_async(
+                model=MISTRAL_MODEL,
+                messages=messages,
+            )
+            
+            response_text = response.choices[0].message.content
+            
+            # Check if the response likely includes multiple results
+            # Look for numbered lists or bullet points
+            has_numbered_list = bool(re.search(r'\d+\.\s', response_text))
+            has_bullet_points = bool(re.search(r'[-•*]\s', response_text))
+            
+            # If we have multiple results and the response has proper formatting, return it
+            if (has_numbered_list or has_bullet_points) and num_results > 1:
+                logger.info(f"Summary includes proper formatting for multiple results")
+                return response_text
+            
+            # If we only have one result, or this is our last attempt, return what we have
+            if num_results == 1 or attempt == 1:
+                if num_results > 1:
+                    # Add a note that there should have been more results
+                    logger.warning(f"Summary may not include all {num_results} results")
+                    response_text = f"Here are {num_results} recreational options I found:\n\n" + response_text
+                return response_text
+            
+            # If we get here, we need to try again with even more explicit instructions
+            logger.warning(f"Summary doesn't appear to include all results, trying again")
+            summarize_prompt += f"\n\nYour previous response did not clearly include all {num_results} results. Please list EACH result separately with a number (1., 2., etc.) and include ALL {num_results} results."
+            
+            messages = [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": summarize_prompt},
+            ]
         
-        return response.choices[0].message.content
+        return response_text
 
     async def run(self, message: discord.Message):
         """Process a user message and return a response"""
