@@ -5,6 +5,7 @@ import traceback
 from discord.ext import commands
 from dotenv import load_dotenv
 from agent import MistralAgent
+import asyncio
 
 PREFIX = "!"
 
@@ -66,32 +67,73 @@ async def on_message(message: discord.Message):
             # Process the message with the agent
             logger.info(f"Processing message from {message.author}: {message.content}")
             
-            # Send a temporary message to indicate processing for longer queries
-            if len(message.content) > 50:
-                temp_msg = await message.reply("I'm searching for recreation information. This might take a moment...")
-            else:
-                temp_msg = None
-                
+            # Create a list of fun temporary messages
+            temp_messages = [
+                "🌲 Exploring the wilderness to find the best activities for you...",
+                "🏔️ Climbing Mount Everest to see if it's worth recommending...",
+                "🚶‍♀️ Hiking through virtual trails to find the perfect spot...",
+                "🏞️ Consulting with park rangers about the best hidden gems...",
+                "🌅 Watching the sunrise from different peaks to find the most scenic views...",
+                "🧗‍♂️ Scaling rock faces to check for climbing difficulty...",
+                "🌿 Fun fact: Trees communicate with each other through underground fungal networks!",
+                "🦅 Fun fact: The average American spends 93% of their life indoors!",
+                "🌄 Fun fact: Just 20 minutes in nature can significantly reduce stress hormones!",
+                "🏕️ Fun fact: Camping was once prescribed by doctors as a cure for tuberculosis!",
+                "🌳 Fun fact: The Japanese practice of 'forest bathing' is scientifically proven to boost immunity!",
+                "🦌 Fun fact: Wildlife watching can lower blood pressure and improve focus!",
+                "🌊 Checking water conditions for the perfect fishing spots...",
+                "🚵‍♀️ Testing bike trails for the optimal adventure...",
+                "🏕️ Setting up tents at various campgrounds to find the coziest spots...",
+                "🌲 Fun fact: The oldest tree in the world is over 5,000 years old!",
+                "🦉 Consulting with the local wildlife about the best viewing spots...",
+                "🧠 Fun fact: Nature walks can improve memory performance by up to 20%!",
+                "🌿 Analyzing plant species to find the most biodiverse hiking areas...",
+                "🌡️ Fun fact: Spending time outdoors helps regulate your body's vitamin D production!"
+            ]
+            
+            # Send a temporary message that we'll update
+            temp_msg = await message.reply(temp_messages[0])
+            
+            # Start a background task to rotate through the messages
+            temp_msg_task = asyncio.create_task(rotate_temp_messages(temp_msg, temp_messages))
+            
             # Get response from agent
             response = await agent.run(message)
             
-            # Delete temporary message if it exists
-            if temp_msg:
-                await temp_msg.delete()
-                
+            # Cancel the temporary message rotation task
+            temp_msg_task.cancel()
+            
             # Check if the response is a list of chunks
             if isinstance(response, list):
+                # Delete the temporary message
+                await temp_msg.delete()
+                
                 # Send each chunk as a separate message
                 for chunk in response:
                     await message.channel.send(chunk)
             else:
-                # Send the response as a single message
-                await message.channel.send(response)
+                # Replace the temporary message with the actual response
+                await temp_msg.edit(content=response)
             
         except Exception as e:
             logger.error(f"Error processing message: {str(e)}")
             logger.error(traceback.format_exc())
             await message.reply("I encountered an error while processing your request. Please try again later.")
+
+
+async def rotate_temp_messages(message, messages):
+    """Rotate through temporary messages while waiting for the real response"""
+    try:
+        index = 1  # Start at 1 since we already used index 0
+        while True:
+            await asyncio.sleep(3)  # Wait 3 seconds between message updates
+            await message.edit(content=messages[index % len(messages)])
+            index += 1
+    except asyncio.CancelledError:
+        # Task was cancelled, which is expected when the real response is ready
+        pass
+    except Exception as e:
+        logger.error(f"Error in rotate_temp_messages: {str(e)}")
 
 
 # Commands
