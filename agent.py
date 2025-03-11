@@ -142,7 +142,7 @@ For EACH facility/area, include:
 3. Location
 4. Key amenities or features
 5. Any special notes or fun facts
-6. Website link or pictures if available
+6. Website link if available
 
 Format the information using a NUMBERED LIST (1., 2., 3., etc.) to clearly separate each location.
 If there are no results, politely inform the user and suggest they try a different search.
@@ -341,6 +341,91 @@ class MistralAgent:
                     logger.error(f"Error searching recreation areas: {response.status}")
                     return []
 
+    async def generate_supplementary_results(self, location, activity, radius, num_needed):
+        """Generate additional results using Mistral when RIDB doesn't provide enough"""
+        logger.info(f"Generating {num_needed} supplementary results for {activity} near {location}")
+        
+        # Create a prompt for Mistral to generate additional locations
+        prompt = f"""
+I need {num_needed} additional {activity.lower() if activity != 'none' else 'recreational'} locations near {location} within {radius} miles.
+
+For each location, provide the following in JSON format:
+- Name
+- Description (2-3 sentences)
+- Location (address or general area)
+- Key features/amenities (list of 3-5 items)
+- A plausible website URL (if applicable)
+
+Format your response as a valid JSON array of objects. Each object should have these fields:
+- FacilityName or RecAreaName
+- Description
+- Location
+- Amenities (array)
+- URL
+
+Example:
+[
+  {{
+    "FacilityName": "Example Trail",
+    "Description": "A scenic trail with beautiful views. Perfect for day hikes.",
+    "Location": "123 Example Rd, City, State",
+    "Amenities": ["Parking", "Restrooms", "Picnic areas", "Dog-friendly"],
+    "URL": "https://example-parks.org/trail"
+  }}
+]
+
+IMPORTANT: These should be real, plausible locations that likely exist, even if you're not 100% certain of all details.
+"""
+
+        messages = [
+            {"role": "system", "content": "You are a helpful assistant that provides accurate information about recreational areas."},
+            {"role": "user", "content": prompt}
+        ]
+        
+        try:
+            response = await self.client.chat.complete_async(
+                model=MISTRAL_MODEL,
+                messages=messages,
+            )
+            
+            result = response.choices[0].message.content
+            
+            # Extract JSON from the response
+            json_pattern = r'(\[.*\])'
+            json_match = re.search(json_pattern, result, re.DOTALL)
+            
+            if json_match:
+                json_str = json_match.group(1)
+                supplementary_results = json.loads(json_str)
+                
+                # Format the results to match RIDB format
+                formatted_results = []
+                for item in supplementary_results:
+                    formatted_item = {
+                        'FacilityName': item.get('FacilityName', item.get('RecAreaName', 'Unknown Location')),
+                        'FacilityDescription': item.get('Description', ''),
+                        'FacilityDirections': item.get('Location', ''),
+                        'FacilityTypeDescription': activity if activity != 'none' else 'Recreation Area',
+                        'FACILITY_LONGITUDE': '',  # We don't have exact coordinates
+                        'FACILITY_LATITUDE': '',
+                        'source': 'supplementary',  # Mark as supplementary
+                        'FacilityPhone': '',
+                        'FacilityEmail': '',
+                        'URL': item.get('URL', ''),
+                        'Amenities': item.get('Amenities', []),
+                        'supplementary_note': 'This location was not found in the RIDB database and may have limited or estimated information.'
+                    }
+                    formatted_results.append(formatted_item)
+                
+                return formatted_results[:num_needed]
+            else:
+                logger.error("Failed to extract JSON from supplementary results response")
+                return []
+                
+        except Exception as e:
+            logger.error(f"Error generating supplementary results: {str(e)}")
+            return []
+
     async def summarize_results(self, query, results, user_id=None):
         """Use Mistral to summarize the search results in a user-friendly way"""
         if not results:
@@ -348,6 +433,10 @@ class MistralAgent:
             
         # Count the number of results for verification
         num_results = len(results)
+        
+        # Separate official and supplementary results
+        official_results = [r for r in results if r.get('source') != 'supplementary']
+        supplementary_results = [r for r in results if r.get('source') == 'supplementary']
         
         # Don't limit to just 5 results anymore
         results_str = json.dumps(results, indent=2)
@@ -365,6 +454,23 @@ class MistralAgent:
         
         # Add explicit instruction about the number of results
         summarize_prompt += f"\n\nIMPORTANT: There are {num_results} results in total. You MUST include ALL {num_results} results in your summary, not just one or two. Number each result clearly."
+        
+        # Add instruction about supplementary results
+        if supplementary_results:
+            num_official = len(official_results)
+            num_supplementary = len(supplementary_results)
+            
+            summarize_prompt += f"""
+\n\nIMPORTANT FORMATTING INSTRUCTION:
+First present the {num_official} official results from the recreation.gov database.
+
+Then, add a clear divider like this:
+"-----------------------------------------------------------
+The following {num_supplementary} results were not found in the recreation.gov database and are additional suggestions generated by AI:"
+
+After this divider, present all the supplementary results (marked with 'source': 'supplementary').
+Make sure to maintain the same quality and detail for both official and supplementary results.
+"""
         
         messages = [
             {"role": "system", "content": system_prompt},
@@ -388,6 +494,36 @@ class MistralAgent:
             # If we have multiple results and the response has proper formatting, return it
             if (has_numbered_list or has_bullet_points) and num_results > 1:
                 logger.info(f"Summary includes proper formatting for multiple results")
+                
+                # If we have supplementary results but no divider was added, add it manually
+                if supplementary_results and "following" not in response_text.lower() and "not found in the" not in response_text.lower():
+                    # Find where to insert the divider (after the official results)
+                    if num_official > 0:
+                        # Try to find the end of the last official result
+                        last_official_index = -1
+                        for i in range(1, num_official + 1):
+                            pattern = fr"{i}\.\s"
+                            matches = list(re.finditer(pattern, response_text))
+                            if matches and matches[-1].start() > last_official_index:
+                                last_official_index = matches[-1].start()
+                        
+                        if last_official_index > -1:
+                            # Find the end of this section (next number or end of text)
+                            next_section = re.search(fr"{num_official + 1}\.\s", response_text)
+                            if next_section:
+                                insert_position = next_section.start()
+                            else:
+                                # Find the end of the paragraph
+                                paragraph_end = response_text[last_official_index:].find("\n\n")
+                                if paragraph_end > -1:
+                                    insert_position = last_official_index + paragraph_end + 2
+                                else:
+                                    insert_position = len(response_text)
+                            
+                            divider = f"\n\n-----------------------------------------------------------\nThe following {num_supplementary} results were not found in the recreation.gov database and are additional suggestions generated by AI:\n\n"
+                            response_text = response_text[:insert_position] + divider + response_text[insert_position:]
+                            logger.info("Added missing divider for supplementary results")
+                
                 return response_text
             
             # If we only have one result, or this is our last attempt, return what we have
@@ -396,6 +532,20 @@ class MistralAgent:
                     # Add a note that there should have been more results
                     logger.warning(f"Summary may not include all {num_results} results")
                     response_text = f"Here are {num_results} recreational options I found:\n\n" + response_text
+                    
+                    # Add a note about supplementary results if needed
+                    if supplementary_results and "not found in the" not in response_text.lower():
+                        divider = f"\n\n-----------------------------------------------------------\nThe following {num_supplementary} results were not found in the recreation.gov database and are additional suggestions generated by AI:\n\n"
+                        # Try to add the divider at an appropriate position
+                        if num_official > 0:
+                            # Add after the official results if we can find them
+                            official_part = response_text.split("\n\n")[0] if "\n\n" in response_text else ""
+                            supplementary_part = response_text[len(official_part):] if official_part else response_text
+                            response_text = official_part + divider + supplementary_part
+                        else:
+                            # Just add at the beginning if we can't determine where to put it
+                            response_text = divider + response_text
+                
                 return response_text
             
             # If we get here, we need to try again with even more explicit instructions
@@ -712,6 +862,23 @@ class MistralAgent:
             
             # Take up to 10 results to ensure variety
             combined_results = combined_results[:10]
+            
+            # Check if we have enough results based on user's requested limit
+            # If not, generate supplementary results
+            if len(combined_results) < limit:
+                num_supplementary_needed = limit - len(combined_results)
+                logger.info(f"Not enough results from RIDB (found {len(combined_results)}, need {limit}). Generating {num_supplementary_needed} supplementary results.")
+                
+                supplementary_results = await self.generate_supplementary_results(
+                    location, 
+                    activity, 
+                    radius, 
+                    num_supplementary_needed
+                )
+                
+                # Add supplementary results to combined results
+                combined_results.extend(supplementary_results)
+                logger.info(f"Added {len(supplementary_results)} supplementary results. New total: {len(combined_results)}")
             
             # Log the final number of results
             logger.info(f"Final combined results: {len(combined_results)}")
