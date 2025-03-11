@@ -114,6 +114,16 @@ async def info_command(ctx):
     )
     
     embed.add_field(
+        name="Location Memory",
+        value="WanderBot can remember your location for easier follow-up questions:\n"
+              "1. First, tell me your location: \"I'm in Portland, OR\" or \"My location is Austin, TX\"\n"
+              "2. Then you can simply ask: \"Where can I go hiking near me?\"\n"
+              "3. WanderBot will remember your location for future queries\n"
+              "4. You can change your location anytime by mentioning a new one",
+        inline=False
+    )
+    
+    embed.add_field(
         name="Available Activities",
         value="BIKING, CLIMBING, CAMPING, FISHING, HIKING, HUNTING, WINTER SPORTS, WATER SPORTS, "
               "RECREATIONAL VEHICLES, WILDLIFE VIEWING, and more!",
@@ -122,7 +132,8 @@ async def info_command(ctx):
     
     embed.add_field(
         name="Commands",
-        value=f"`{PREFIX}info` - Shows this info message\n"
+        value=f"`{PREFIX}welcome` - Learn about WanderBot's mission to get you outdoors\n"
+              f"`{PREFIX}info` - Shows this info message\n"
               f"`{PREFIX}ping` - Checks if the bot is responsive",
         inline=False
     )
@@ -135,6 +146,58 @@ async def info_command(ctx):
 @bot.command(name="ping", help="Checks if the bot is responsive.")
 async def ping(ctx):
     await ctx.send(f"Pong! Bot latency is {round(bot.latency * 1000)}ms")
+
+
+@bot.command(name="welcome", help="Explains WanderBot's purpose and mission.")
+async def welcome_command(ctx):
+    embed = discord.Embed(
+        title="🌲 Welcome to WanderBot! 🏞️",
+        description="Your guide to breaking the cycle of endless scrolling and getting outdoors!",
+        color=discord.Color.green()
+    )
+    
+    embed.add_field(
+        name="Our Mission",
+        value="WanderBot helps break the cycle of endless scrolling and gets people off their screens and into the outdoors! "
+              "We all know how easy it is to lose track of time online, but spending time outside is crucial for our well-being. "
+              "This bot provides gentle encouragement for movement and outdoor exploration.",
+        inline=False
+    )
+    
+    embed.add_field(
+        name="How WanderBot Helps",
+        value="• Finds hiking trails, camping spots, and other outdoor activities near you\n"
+              "• Suggests recreational facilities based on your interests and location\n"
+              "• Provides information about amenities, features, and what to expect\n"
+              "• Makes it easy to discover new outdoor adventures without endless research",
+        inline=False
+    )
+    
+    embed.add_field(
+        name="Benefits of Outdoor Time",
+        value="• Reduces stress and anxiety\n"
+              "• Improves mood and mental health\n"
+              "• Increases physical activity\n"
+              "• Enhances creativity and focus\n"
+              "• Creates meaningful experiences and memories",
+        inline=False
+    )
+    
+    embed.add_field(
+        name="Get Started",
+        value="Just ask me about recreational activities in your area! For example:\n"
+              "• \"Where can I go hiking near Portland?\"\n"
+              "• \"Find camping spots within 30 miles of Austin\"\n"
+              "• \"What are some outdoor activities in Chicago?\"",
+        inline=False
+    )
+    
+    embed.set_footer(text="Type !info for more specific usage instructions")
+    
+    # Add a nature image to make the embed more appealing
+    embed.set_thumbnail(url="https://i.imgur.com/8tRFLp8.png")  # Generic outdoor/hiking icon
+    
+    await ctx.send(embed=embed)
 
 
 # Error handling for commands

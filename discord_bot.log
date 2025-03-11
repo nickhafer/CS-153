@@ -856,3 +856,232 @@ discord.errors.HTTPException: 400 Bad Request (error code: 50006): Cannot send a
 2025-03-10 22:49:41,152 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
 2025-03-10 22:49:41,159 - discord.agent - INFO - Summary includes proper formatting for multiple results
 2025-03-10 22:49:41,159 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages
+2025-03-11 00:26:27,274 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 7a8ecaba53333d4aad782a9a888b5624.
+2025-03-11 03:29:51,673 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 7a8ecaba53333d4aad782a9a888b5624.
+2025-03-11 05:09:25,525 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 7a8ecaba53333d4aad782a9a888b5624.
+2025-03-11 06:13:41,841 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 7a8ecaba53333d4aad782a9a888b5624.
+2025-03-11 07:09:28,482 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 7a8ecaba53333d4aad782a9a888b5624.
+2025-03-11 08:21:30,116 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 7a8ecaba53333d4aad782a9a888b5624.
+2025-03-11 08:36:51,877 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-11 08:36:57,325 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 3ba9f85fb06ebb1b3484c16603c7374d).
+2025-03-11 08:36:59,385 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 08:45:02,428 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-11 08:45:07,831 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: a68e0dce2cdc60cd4e20517d33104ace).
+2025-03-11 08:45:09,875 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 08:47:14,772 - discord.gateway - INFO - Shard ID None has successfully RESUMED session a68e0dce2cdc60cd4e20517d33104ace.
+2025-03-11 08:56:58,149 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-11 08:57:03,543 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 18a548946b6828cd79e7d04641065075).
+2025-03-11 08:57:05,651 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 09:01:13,118 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-11 09:01:18,523 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 04e027414959fbf8e3032bb18fbb37ac).
+2025-03-11 09:01:20,605 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 10:02:02,384 - discord.client - ERROR - Attempting a reconnect in 1.58s
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 1362, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 995, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 1026, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/resolver.py", line 36, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 901, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 963, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/client.py", line 701, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/gateway.py", line 375, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/http.py", line 554, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/client.py", line 1004, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/client.py", line 703, in _request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 548, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 1056, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 1368, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-b.discord.gg:443 ssl:default [nodename nor servname provided, or not known]
+2025-03-11 10:02:03,997 - discord.client - ERROR - Attempting a reconnect in 2.81s
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 1362, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 995, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 1026, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/resolver.py", line 36, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 901, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 963, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/client.py", line 701, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/gateway.py", line 375, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/http.py", line 554, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/client.py", line 1004, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/client.py", line 703, in _request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 548, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 1056, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 1368, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-b.discord.gg:443 ssl:default [nodename nor servname provided, or not known]
+2025-03-11 10:02:06,819 - discord.client - ERROR - Attempting a reconnect in 4.95s
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 1362, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 995, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 1026, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/resolver.py", line 36, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 901, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 963, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/client.py", line 701, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/gateway.py", line 375, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/http.py", line 554, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/client.py", line 1004, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/client.py", line 703, in _request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 548, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 1056, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 1368, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-b.discord.gg:443 ssl:default [nodename nor servname provided, or not known]
+2025-03-11 10:02:11,990 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-11 10:02:20,390 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 080af05556319a3dcd69023090219e0f).
+2025-03-11 10:02:22,480 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 10:46:08,993 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-11 10:46:14,603 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 2662ca5e019b5aeada36769546f5f7cc).
+2025-03-11 10:46:16,620 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 10:50:49,668 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-11 10:50:49,742 - discord.client - INFO - logging in using static token
+2025-03-11 10:50:50,404 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 7d44652e71dcb7b707a348ab40f9ed80).
+2025-03-11 10:50:52,463 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 11:02:50,537 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-11 11:02:50,604 - discord.client - INFO - logging in using static token
+2025-03-11 11:02:51,439 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: b0610c51c0d3a3a3b3893db9a0e0bbc9).
+2025-03-11 11:02:53,488 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 11:05:38,289 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-11 11:05:38,368 - discord.client - INFO - logging in using static token
+2025-03-11 11:05:39,242 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 17d8b531c518833dc73ec66fb8e1f80f).
+2025-03-11 11:05:41,289 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 11:06:15,337 - discord - INFO - Processing message from the510dude: where can i go hiking near austin, tx
+2025-03-11 11:06:17,734 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:06:20,300 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:06:22,951 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:06:25,408 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:06:25,410 - discord.agent - INFO - Saved location for user 152253205668036608: Austin, TX
+2025-03-11 11:06:25,410 - discord.agent - INFO - Saved activity for user 152253205668036608: HIKING
+2025-03-11 11:06:25,754 - discord.agent - INFO - Searching for HIKING near Austin, TX within 25 miles with limit 5
+2025-03-11 11:06:25,755 - discord.agent - INFO - Searching facilities with params: {'latitude': '30.2711286', 'longitude': '-97.7436995', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-11 11:06:27,150 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '30.2711286', 'longitude': '-97.7436995', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-11 11:06:28,185 - discord.agent - INFO - Found 0 facilities and 1 recreation areas
+2025-03-11 11:06:28,186 - discord.agent - INFO - Final combined results: 1
+2025-03-11 11:06:35,712 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:07:28,184 - discord - INFO - Processing message from the510dude: what are some outdoor activities near austin, tx
+2025-03-11 11:07:28,810 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:07:31,150 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:07:33,536 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:07:35,964 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:07:35,968 - discord.agent - INFO - Saved location for user 152253205668036608: Austin, TX
+2025-03-11 11:07:36,098 - discord.agent - INFO - Searching for none near Austin, TX within 25 miles with limit 5
+2025-03-11 11:07:36,099 - discord.agent - INFO - Searching facilities with params: {'latitude': '30.2711286', 'longitude': '-97.7436995', 'radius': 25, 'limit': 15, 'full': 'true'}
+2025-03-11 11:07:37,196 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '30.2711286', 'longitude': '-97.7436995', 'radius': 25, 'limit': 15, 'full': 'true'}
+2025-03-11 11:07:38,115 - discord.agent - INFO - Found 1 facilities and 1 recreation areas
+2025-03-11 11:07:38,115 - discord.agent - INFO - Final combined results: 2
+2025-03-11 11:08:02,535 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 11:08:02,538 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-11 11:08:02,538 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages
