@@ -703,3 +703,156 @@ aiohttp.client_exceptions.ClientConnectionResetError: Cannot write to closing tr
 2025-03-10 22:33:14,323 - discord.agent - INFO - Final combined results: 2
 2025-03-10 22:33:24,331 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
 2025-03-10 22:33:24,337 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-10 22:34:58,877 - discord - INFO - Processing message from the510dude: where can i go hiking within 25 miles of palo alto, ca
+2025-03-10 22:35:01,276 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:35:03,683 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:35:06,143 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:35:09,667 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-10 22:35:09,741 - discord.client - INFO - logging in using static token
+2025-03-10 22:35:10,609 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 5f5603d53992a062aeb84709320096ee).
+2025-03-10 22:35:12,644 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-10 22:35:21,096 - discord - INFO - Processing message from the510dude: where can i go hiking within 25 miles of palo alto, ca
+2025-03-10 22:35:21,999 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:35:24,106 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:35:26,692 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:35:29,096 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:35:29,098 - discord.agent - INFO - Saved location for user 152253205668036608: Palo Alto, CA
+2025-03-10 22:35:29,098 - discord.agent - INFO - Saved activity for user 152253205668036608: HIKING
+2025-03-10 22:35:29,318 - discord.agent - INFO - Searching for HIKING near Palo Alto, CA within 25 miles with limit 5
+2025-03-10 22:35:29,318 - discord.agent - INFO - Searching facilities with params: {'latitude': '37.4443293', 'longitude': '-122.1598465', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-10 22:35:30,616 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '37.4443293', 'longitude': '-122.1598465', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-10 22:35:31,609 - discord.agent - INFO - Found 1 facilities and 1 recreation areas
+2025-03-10 22:35:31,611 - discord.agent - INFO - Final combined results: 2
+2025-03-10 22:35:40,349 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:35:40,352 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-10 22:35:57,044 - discord - INFO - Processing message from the510dude: where can i go fishing near santa cruz, ca
+2025-03-10 22:35:57,856 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:36:00,121 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:36:02,430 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:36:04,613 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:36:04,617 - discord.agent - INFO - Saved location for user 152253205668036608: Santa Cruz, CA
+2025-03-10 22:36:04,617 - discord.agent - INFO - Saved activity for user 152253205668036608: FISHING
+2025-03-10 22:36:04,805 - discord.agent - INFO - Searching for FISHING near Santa Cruz, CA within 25 miles with limit 5
+2025-03-10 22:36:04,806 - discord.agent - INFO - Searching facilities with params: {'latitude': '37.050096', 'longitude': '-121.99059', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'FISHING'}
+2025-03-10 22:36:05,944 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '37.050096', 'longitude': '-121.99059', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'FISHING'}
+2025-03-10 22:36:06,868 - discord.agent - INFO - Found 0 facilities and 1 recreation areas
+2025-03-10 22:36:06,870 - discord.agent - INFO - Final combined results: 1
+2025-03-10 22:36:13,422 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:36:55,067 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-10 22:36:55,135 - discord.client - INFO - logging in using static token
+2025-03-10 22:36:55,970 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 1eead412f7994967d2aa8a6379c31f5e).
+2025-03-10 22:36:58,031 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-10 22:37:13,615 - discord - INFO - Processing message from the510dude: where can i go hiking near NYC, NY
+2025-03-10 22:37:14,244 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:37:16,262 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:37:19,170 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:37:21,719 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:37:21,723 - discord.agent - INFO - Saved location for user 152253205668036608: New York, NY
+2025-03-10 22:37:21,723 - discord.agent - INFO - Saved activity for user 152253205668036608: HIKING
+2025-03-10 22:37:21,858 - discord.agent - INFO - Searching for HIKING near New York, NY within 25 miles with limit 5
+2025-03-10 22:37:21,859 - discord.agent - INFO - Searching facilities with params: {'latitude': '40.7127281', 'longitude': '-74.0060152', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-10 22:37:23,257 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '40.7127281', 'longitude': '-74.0060152', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-10 22:37:24,164 - discord.agent - INFO - Found 3 facilities and 1 recreation areas
+2025-03-10 22:37:24,165 - discord.agent - INFO - Final combined results: 4
+2025-03-10 22:37:37,268 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:37:37,274 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-10 22:38:12,606 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-10 22:38:12,683 - discord.client - INFO - logging in using static token
+2025-03-10 22:38:13,506 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: f3270612090202e9faa93ad9d88bacbd).
+2025-03-10 22:38:15,592 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-10 22:38:19,480 - discord - INFO - Processing message from the510dude: where can i go hiking near NYC, NY
+2025-03-10 22:38:20,193 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:38:22,291 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:38:24,665 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:38:27,025 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:38:27,028 - discord.agent - INFO - Saved location for user 152253205668036608: New York City, NY
+2025-03-10 22:38:27,028 - discord.agent - INFO - Saved activity for user 152253205668036608: HIKING
+2025-03-10 22:38:27,205 - discord.agent - INFO - Searching for HIKING near New York City, NY within 25 miles with limit 5
+2025-03-10 22:38:27,205 - discord.agent - INFO - Searching facilities with params: {'latitude': '40.7127281', 'longitude': '-74.0060152', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-10 22:38:28,484 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '40.7127281', 'longitude': '-74.0060152', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-10 22:38:29,339 - discord.agent - INFO - Found 3 facilities and 1 recreation areas
+2025-03-10 22:38:29,339 - discord.agent - INFO - Final combined results: 4
+2025-03-10 22:38:41,386 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:38:41,395 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-10 22:40:06,460 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-10 22:40:06,524 - discord.client - INFO - logging in using static token
+2025-03-10 22:40:07,284 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 1f69d5f8a9520dd678459de918597919).
+2025-03-10 22:40:09,317 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-10 22:40:12,676 - discord - INFO - Processing message from the510dude: where can i go hiking near NYC, NY
+2025-03-10 22:40:14,881 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:40:17,026 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:40:19,746 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:40:22,452 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:40:22,454 - discord.agent - INFO - Saved location for user 152253205668036608: New York City, NY
+2025-03-10 22:40:22,454 - discord.agent - INFO - Saved activity for user 152253205668036608: HIKING
+2025-03-10 22:40:22,630 - discord.agent - INFO - Searching for HIKING near New York City, NY within 25 miles with limit 5
+2025-03-10 22:40:22,630 - discord.agent - INFO - Searching facilities with params: {'latitude': '40.7127281', 'longitude': '-74.0060152', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-10 22:40:23,861 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '40.7127281', 'longitude': '-74.0060152', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-10 22:40:25,015 - discord.agent - INFO - Found 3 facilities and 1 recreation areas
+2025-03-10 22:40:25,016 - discord.agent - INFO - Final combined results: 4
+2025-03-10 22:40:41,192 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:40:41,196 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-10 22:43:50,324 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-10 22:43:50,390 - discord.client - INFO - logging in using static token
+2025-03-10 22:43:51,166 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: cd7a5daba612a1d8abd61a8876554115).
+2025-03-10 22:43:53,306 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-10 22:44:01,064 - discord - INFO - Processing message from the510dude: where can i go hiking near NYC, NY
+2025-03-10 22:44:01,922 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:44:04,044 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:44:06,504 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:44:09,231 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:44:09,240 - discord.agent - INFO - Saved location for user 152253205668036608: New York City, NY
+2025-03-10 22:44:09,240 - discord.agent - INFO - Saved activity for user 152253205668036608: HIKING
+2025-03-10 22:44:09,372 - discord.agent - INFO - Searching for HIKING near New York City, NY within 25 miles with limit 5
+2025-03-10 22:44:09,373 - discord.agent - INFO - Searching facilities with params: {'latitude': '40.7127281', 'longitude': '-74.0060152', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-10 22:44:10,807 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '40.7127281', 'longitude': '-74.0060152', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-10 22:44:11,726 - discord.agent - INFO - Found 3 facilities and 1 recreation areas
+2025-03-10 22:44:11,727 - discord.agent - INFO - Final combined results: 4
+2025-03-10 22:44:39,120 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:44:39,124 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-10 22:44:39,124 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages
+2025-03-10 22:44:39,773 - discord - ERROR - Error processing message: 400 Bad Request (error code: 50006): Cannot send an empty message
+2025-03-10 22:44:39,782 - discord - ERROR - Traceback (most recent call last):
+  File "/Users/nickhafer/Desktop/CS 153/CS-153/bot.py", line 89, in on_message
+    await message.channel.send(response)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/abc.py", line 1644, in send
+    data = await state.http.send_message(channel.id, params=params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/http.py", line 762, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 400 Bad Request (error code: 50006): Cannot send an empty message
+
+2025-03-10 22:46:59,282 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-10 22:46:59,350 - discord.client - INFO - logging in using static token
+2025-03-10 22:47:00,149 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 7a8ecaba53333d4aad782a9a888b5624).
+2025-03-10 22:47:02,252 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-10 22:47:14,049 - discord - INFO - Processing message from the510dude: where can i go hiking near NYC, NY
+2025-03-10 22:47:16,264 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:47:18,314 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:47:20,747 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:47:24,337 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:47:24,342 - discord.agent - INFO - Saved location for user 152253205668036608: New York City, NY
+2025-03-10 22:47:24,342 - discord.agent - INFO - Saved activity for user 152253205668036608: HIKING
+2025-03-10 22:47:24,560 - discord.agent - INFO - Searching for HIKING near New York City, NY within 25 miles with limit 5
+2025-03-10 22:47:24,560 - discord.agent - INFO - Searching facilities with params: {'latitude': '40.7127281', 'longitude': '-74.0060152', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-10 22:47:25,840 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '40.7127281', 'longitude': '-74.0060152', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-10 22:47:26,985 - discord.agent - INFO - Found 3 facilities and 1 recreation areas
+2025-03-10 22:47:26,985 - discord.agent - INFO - Final combined results: 4
+2025-03-10 22:47:42,123 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:47:42,128 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-10 22:47:42,128 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages
+2025-03-10 22:49:01,055 - discord - INFO - Processing message from the510dude: where can i go hiking near marin, ca
+2025-03-10 22:49:01,653 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:49:03,794 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:49:06,116 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:49:08,510 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:49:08,519 - discord.agent - INFO - Saved location for user 152253205668036608: Marin, CA
+2025-03-10 22:49:08,519 - discord.agent - INFO - Saved activity for user 152253205668036608: HIKING
+2025-03-10 22:49:08,942 - discord.agent - INFO - Searching for HIKING near Marin, CA within 25 miles with limit 5
+2025-03-10 22:49:08,943 - discord.agent - INFO - Searching facilities with params: {'latitude': '38.0409144', 'longitude': '-122.6199638', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-10 22:49:10,308 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '38.0409144', 'longitude': '-122.6199638', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-10 22:49:11,208 - discord.agent - INFO - Found 7 facilities and 4 recreation areas
+2025-03-10 22:49:11,209 - discord.agent - INFO - Final combined results: 10
+2025-03-10 22:49:41,152 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-10 22:49:41,159 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-10 22:49:41,159 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages

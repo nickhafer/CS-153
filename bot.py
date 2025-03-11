@@ -79,8 +79,14 @@ async def on_message(message: discord.Message):
             if temp_msg:
                 await temp_msg.delete()
                 
-            # Send the response back to the channel
-            await message.reply(response)
+            # Check if the response is a list of chunks
+            if isinstance(response, list):
+                # Send each chunk as a separate message
+                for chunk in response:
+                    await message.channel.send(chunk)
+            else:
+                # Send the response as a single message
+                await message.channel.send(response)
             
         except Exception as e:
             logger.error(f"Error processing message: {str(e)}")

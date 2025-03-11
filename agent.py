@@ -141,7 +141,8 @@ For EACH facility/area, include:
 2. Brief description
 3. Location
 4. Key amenities or features
-5. Any special notes
+5. Any special notes or fun facts
+6. Website link or pictures if available
 
 Format the information using a NUMBERED LIST (1., 2., 3., etc.) to clearly separate each location.
 If there are no results, politely inform the user and suggest they try a different search.
@@ -738,24 +739,97 @@ class MistralAgent:
                 response_text += "- Reply with 'expand search to 30' to specify a custom search radius (up to 50 miles)\n"
                 response_text += "- Try a different location or activity"
             
-            # Truncate if longer than Discord's limit
+            # Handle long responses by splitting them into multiple messages
             if len(response_text) > 1990:
-                response_text = response_text[:1990] + "..."
-            
-            # Store in conversation history
-            self.conversation_history[user_id].append({
-                "query": user_query,
-                "response": response_text,
-                "no_results": no_results,
-                "location": location,
-                "activity": activity
-            })
-            
-            # Limit history size
-            if len(self.conversation_history[user_id]) > self.max_history_length:
-                self.conversation_history[user_id].pop(0)
-            
-            return response_text
+                logger.info(f"Response exceeds Discord character limit, splitting into multiple messages")
+                
+                # Store the original response for conversation history
+                original_response = response_text
+                
+                # Split the response into chunks of approximately 1900 characters
+                # Try to split at paragraph breaks or sentence endings
+                chunks = []
+                current_chunk = ""
+                
+                # First try to split at paragraph breaks
+                paragraphs = response_text.split("\n\n")
+                
+                for paragraph in paragraphs:
+                    # If adding this paragraph would exceed the limit, start a new chunk
+                    if len(current_chunk) + len(paragraph) + 2 > 1900:
+                        if current_chunk:  # Only add non-empty chunks
+                            chunks.append(current_chunk)
+                            current_chunk = paragraph
+                        else:
+                            # If a single paragraph is too long, we'll need to split it by sentences
+                            if len(paragraph) > 1900:
+                                sentences = re.split(r'(?<=[.!?])\s+', paragraph)
+                                for sentence in sentences:
+                                    if len(current_chunk) + len(sentence) + 1 > 1900:
+                                        chunks.append(current_chunk)
+                                        current_chunk = sentence
+                                    else:
+                                        if current_chunk:
+                                            current_chunk += " " + sentence
+                                        else:
+                                            current_chunk = sentence
+                            else:
+                                chunks.append(paragraph)
+                    else:
+                        if current_chunk:
+                            current_chunk += "\n\n" + paragraph
+                        else:
+                            current_chunk = paragraph
+                
+                # Add the last chunk if it's not empty
+                if current_chunk:
+                    chunks.append(current_chunk)
+                
+                # If we somehow didn't create any valid chunks, fall back to simple splitting
+                if not chunks:
+                    chunks = [response_text[i:i+1900] for i in range(0, len(response_text), 1900)]
+                
+                # Add continuation markers
+                for i in range(len(chunks)):
+                    if i < len(chunks) - 1:
+                        chunks[i] += "\n\n[Continued in next message...]"
+                    if i > 0:
+                        chunks[i] = "[Continued from previous message...]\n\n" + chunks[i]
+                
+                # Store in conversation history (using the original full response)
+                self.conversation_history[user_id].append({
+                    "query": user_query,
+                    "response": original_response,
+                    "no_results": no_results,
+                    "location": location,
+                    "activity": activity
+                })
+                
+                # Limit history size
+                if len(self.conversation_history[user_id]) > self.max_history_length:
+                    self.conversation_history[user_id].pop(0)
+                
+                # Send all chunks except the last one
+                for i in range(len(chunks) - 1):
+                    await message.channel.send(chunks[i])
+                
+                # Return the last chunk instead of None, so the bot.py can send it
+                return chunks[-1]
+            else:
+                # Store in conversation history
+                self.conversation_history[user_id].append({
+                    "query": user_query,
+                    "response": response_text,
+                    "no_results": no_results,
+                    "location": location,
+                    "activity": activity
+                })
+                
+                # Limit history size
+                if len(self.conversation_history[user_id]) > self.max_history_length:
+                    self.conversation_history[user_id].pop(0)
+                
+                return response_text
             
         except Exception as e:
             logger.error(f"Error in run method: {str(e)}")
