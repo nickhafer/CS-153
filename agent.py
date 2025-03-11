@@ -20,14 +20,16 @@ You are a helpful assistant that provides information about recreational activit
 facilities in the United States. You can help users find camping spots, hiking trails, 
 fishing locations, and other outdoor activities.
 
-When providing information about recreational facilities, include:
-1. The name of the facility
-2. A brief description
-3. Location details
-4. Any relevant amenities or features
-5. Links to more information when available
+When providing information about recreational facilities, you MUST:
+1. List ALL available results (up to 10 locations)
+2. For each facility/area include:
+   - The name of the facility
+   - A brief description
+   - Location details
+   - Any relevant amenities or features
+   - Links to more information when available
 
-Be concise but informative, and always try to provide the most relevant results based on the user's query.
+Be concise but informative, and always provide multiple options when available. Never limit your response to just one location unless only one result was found.
 """
 
 EXTRACT_LOCATION_PROMPT = """
@@ -132,15 +134,18 @@ Response: {"Limit": "5"}
 SUMMARIZE_RESULTS_PROMPT = """
 You are a helpful assistant that provides information about recreational activities and facilities in the United States.
 
-Below are the results from a search for recreational facilities. Please summarize these results in a friendly, informative way.
-Include the most relevant details for each facility, such as:
+Below are the results from a search for recreational facilities. You MUST summarize ALL of these results in a friendly, informative way.
+For EACH facility/area, include:
 - Name and type of facility
 - Brief description
 - Location
 - Key amenities or features
 - Any special notes
 
-Format the information in a clear, readable way. If there are no results, politely inform the user and suggest they try a different search.
+Format the information in a clear, readable way using numbered lists or bullet points to separate each location.
+If there are no results, politely inform the user and suggest they try a different search.
+
+Remember: You must include ALL results provided (up to 10 locations). Do not limit your response to just one location unless only one result was found.
 
 Search query: {query}
 Search results: {results}
@@ -312,7 +317,7 @@ class MistralAgent:
             "latitude": lat,
             "longitude": lon,
             "radius": radius,
-            "limit": limit,
+            "limit": limit * 2,  # Double the limit to ensure we get enough results
             "full": "true"
         }
         
@@ -331,11 +336,11 @@ class MistralAgent:
 
     async def summarize_results(self, query, results):
         """Use Mistral to summarize the search results in a user-friendly way"""
-        # if not results:
-        #     return "I couldn't find any recreational facilities matching your criteria. Please try a different search. You could try expanding the radius or changing the activity or specifying a different location."
+        if not results:
+            return "I couldn't find any recreational facilities matching your criteria. Please try a different search. You could try expanding the radius or changing the activity or specifying a different location."
             
-        # Limit the size of results to avoid token limits
-        results_str = json.dumps(results[:5], indent=2)
+        # Don't limit to just 5 results anymore
+        results_str = json.dumps(results, indent=2)
         if len(results_str) > 4000:
             results_str = results_str[:4000] + "... (truncated)"
             
@@ -491,32 +496,30 @@ class MistralAgent:
             facilities = await self.search_facilities(lat, lon, activity, radius, limit)
             rec_areas = await self.search_recreation_areas(lat, lon, activity, radius, limit)
             
-            # Combine results
-            combined_results = facilities + rec_areas
+            # Combine results - don't limit individual searches
+            combined_results = []
             
-            # If no results found and radius is less than 50, try with extended radius
-            original_radius = radius
-            if not combined_results and radius < 50:
-                logger.info(f"No results found within {radius} miles. Extending search to 50 miles.")
-                radius = 50
+            # Add facilities with source
+            for facility in facilities:
+                facility['source'] = 'facility'
+                combined_results.append(facility)
                 
-                # Search again with extended radius
-                facilities = await self.search_facilities(lat, lon, activity, radius, limit)
-                rec_areas = await self.search_recreation_areas(lat, lon, activity, radius, limit)
-                
-                # Combine results
-                combined_results = facilities + rec_areas
-                
-            # Limit results
-            combined_results = combined_results[:limit]
+            # Add rec areas with source
+            for rec_area in rec_areas:
+                rec_area['source'] = 'rec_area'
+                combined_results.append(rec_area)
+            
+            # Sort combined results by distance if available
+            if combined_results and ('RecAreaDistance' in combined_results[0] or 'FacilityDistance' in combined_results[0]):
+                combined_results.sort(key=lambda x: float(x.get('RecAreaDistance', x.get('FacilityDistance', float('inf')))))
+            
+            # Take more results (up to 10) to ensure variety
+            combined_results = combined_results[:10]
             
             # Summarize the results
             if not combined_results:
-                search_summary = f"Looking for {activity if activity != 'none' else 'recreational activities'} near {location} within {original_radius} miles"
+                search_summary = f"Looking for {activity if activity != 'none' else 'recreational activities'} near {location} within {radius} miles"
                 no_results = True
-            elif original_radius != radius:
-                search_summary = f"Looking for {activity if activity != 'none' else 'recreational activities'} near {location}. Extended search to {radius} miles since no results were found within {original_radius} miles."
-                no_results = False
             else:
                 search_summary = f"Looking for {activity if activity != 'none' else 'recreational activities'} near {location} within {radius} miles"
                 no_results = False
