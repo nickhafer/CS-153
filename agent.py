@@ -135,7 +135,7 @@ Response: {"Limit": "5"}
 SUMMARIZE_RESULTS_PROMPT = """
 You are a helpful assistant that provides information about recreational activities and facilities in the United States.
 
-Below are the results from a search for recreational facilities. You MUST summarize ALL of these results in a friendly, informative way.
+Below are the results from a search for recreational facilities. You MUST summarize EXACTLY these results in a friendly, informative way.
 
 For EACH facility/area, include:
 1. Name and type of facility
@@ -148,7 +148,7 @@ For EACH facility/area, include:
 Format the information using a NUMBERED LIST (1., 2., 3., etc.) to clearly separate each location.
 If there are no results, politely inform the user and suggest they try a different search.
 
-IMPORTANT: You must include EVERY result provided. Do not limit your response to just one location unless only one result was found. The user specifically wants to see ALL options.
+IMPORTANT: You must include EXACTLY the number of results provided, no more and no less. The user specifically wants to see the exact number of options they requested.
 
 Search query: {query}
 Search results: {results}
@@ -454,7 +454,7 @@ IMPORTANT: These should be real, plausible locations that likely exist, even if 
         summarize_prompt = SUMMARIZE_RESULTS_PROMPT.format(query=query, results=results_str)
         
         # Add explicit instruction about the number of results
-        summarize_prompt += f"\n\nIMPORTANT: There are {num_results} results in total. You MUST include ALL {num_results} results in your summary, not just one or two. Number each result clearly."
+        summarize_prompt += f"\n\nIMPORTANT: There are EXACTLY {num_results} results in total. You MUST include ALL {num_results} results in your summary, not more and not less. Number each result clearly from 1 to {num_results}."
         
         # Add instruction about supplementary results and nature emojis
         if supplementary_results:
@@ -933,8 +933,8 @@ At the very end of your response, add a brief reminder about the benefits of spe
                 
                 combined_results.sort(key=get_distance)
             
-            # Take up to 10 results to ensure variety
-            combined_results = combined_results[:10]
+            # Take only up to the user's requested limit instead of hardcoding 10
+            combined_results = combined_results[:int(limit)]
             
             # Check if we have enough results based on user's requested limit
             # If not, generate supplementary results

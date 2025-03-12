@@ -1552,3 +1552,94 @@ aiohttp.client_exceptions.ClientConnectionResetError: Cannot write to closing tr
 2025-03-11 20:27:41,610 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
 2025-03-11 20:27:41,619 - discord.agent - INFO - Summary includes proper formatting for multiple results
 2025-03-11 20:27:41,619 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages
+2025-03-11 20:32:06,191 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-11 20:32:06,277 - discord.client - INFO - logging in using static token
+2025-03-11 20:32:07,026 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: e5071f204444bdf8d8b584f117265e88).
+2025-03-11 20:32:09,069 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 20:33:50,817 - discord - INFO - Processing message from the510dude: give me 5 spots i can go hiking near marin, ca
+2025-03-11 20:33:52,161 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:33:54,173 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:33:57,009 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:33:59,057 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:33:59,063 - discord.agent - INFO - Saved location for user 152253205668036608: Marin, CA
+2025-03-11 20:33:59,064 - discord.agent - INFO - Saved activity for user 152253205668036608: HIKING
+2025-03-11 20:34:00,592 - discord.agent - INFO - Searching for HIKING near Marin, CA within 25 miles with limit 5
+2025-03-11 20:34:00,594 - discord.agent - INFO - Searching facilities with params: {'latitude': '38.0409144', 'longitude': '-122.6199638', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-11 20:34:02,362 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '38.0409144', 'longitude': '-122.6199638', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-11 20:34:03,668 - discord.agent - INFO - Found 7 facilities and 4 recreation areas
+2025-03-11 20:34:03,668 - discord.agent - INFO - Final combined results: 10
+2025-03-11 20:34:34,186 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:34:34,190 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-11 20:34:34,190 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages
+2025-03-11 20:35:12,891 - discord - INFO - Processing message from the510dude: im traveling to zion, utah soon, what kinds of activities can i try there? list 3 or so
+2025-03-11 20:35:14,325 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:35:16,457 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:35:26,970 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:35:29,066 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:35:29,071 - discord.agent - INFO - Saved location for user 152253205668036608: Zion, UT
+2025-03-11 20:35:29,241 - discord.agent - INFO - Searching for none near Zion, UT within 25 miles with limit 3
+2025-03-11 20:35:29,241 - discord.agent - INFO - Searching facilities with params: {'latitude': '40.773487450000005', 'longitude': '-111.92228368586176', 'radius': 25, 'limit': 10, 'full': 'true'}
+2025-03-11 20:35:32,952 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '40.773487450000005', 'longitude': '-111.92228368586176', 'radius': 25, 'limit': 10, 'full': 'true'}
+2025-03-11 20:35:34,278 - discord.agent - INFO - Found 10 facilities and 7 recreation areas
+2025-03-11 20:35:34,278 - discord.agent - INFO - Final combined results: 10
+2025-03-11 20:36:04,240 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:36:04,246 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-11 20:36:04,246 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages
+2025-03-11 20:36:47,888 - discord - INFO - Processing message from the510dude: what are 3 places i can go fishing near me
+2025-03-11 20:36:48,191 - discord.agent - INFO - Using saved location for user 152253205668036608: Zion, UT
+2025-03-11 20:36:48,191 - discord.agent - INFO - Modified query: what are 3 places i can go fishing near Zion, UT
+2025-03-11 20:36:48,906 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:36:51,158 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:36:53,819 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:36:56,219 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:36:56,223 - discord.agent - INFO - Saved location for user 152253205668036608: Zion, UT
+2025-03-11 20:36:56,223 - discord.agent - INFO - Saved activity for user 152253205668036608: FISHING
+2025-03-11 20:36:56,359 - discord.agent - INFO - Searching for FISHING near Zion, UT within 25 miles with limit 3
+2025-03-11 20:36:56,360 - discord.agent - INFO - Searching facilities with params: {'latitude': '40.773487450000005', 'longitude': '-111.92228368586176', 'radius': 25, 'limit': 10, 'full': 'true', 'activity': 'FISHING'}
+2025-03-11 20:36:57,936 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '40.773487450000005', 'longitude': '-111.92228368586176', 'radius': 25, 'limit': 10, 'full': 'true', 'activity': 'FISHING'}
+2025-03-11 20:36:59,248 - discord.agent - INFO - Found 10 facilities and 2 recreation areas
+2025-03-11 20:36:59,248 - discord.agent - INFO - Final combined results: 10
+2025-03-11 20:37:28,147 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:37:28,150 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-11 20:37:28,151 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages
+2025-03-11 20:40:33,869 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-11 20:40:33,941 - discord.client - INFO - logging in using static token
+2025-03-11 20:40:34,910 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 775531ccc6cb5a2738b6026622495483).
+2025-03-11 20:40:36,960 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 20:40:48,624 - discord - INFO - Processing message from the510dude: what are 3 places i can go fishing near me
+2025-03-11 20:40:49,751 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:40:52,108 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:40:57,121 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:40:59,049 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:40:59,053 - discord.agent - INFO - Saved activity for user 152253205668036608: FISHING
+2025-03-11 20:41:05,725 - discord - INFO - Processing message from the510dude: san diego, ca
+2025-03-11 20:41:06,078 - discord.agent - INFO - Detected location response: san diego, ca
+2025-03-11 20:41:06,079 - discord.agent - INFO - Saved location from direct response: san diego, ca
+2025-03-11 20:41:07,558 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:41:09,821 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:41:12,584 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:41:15,477 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:41:15,484 - discord.agent - INFO - Saved location for user 152253205668036608: San Diego, CA
+2025-03-11 20:41:15,856 - discord.agent - INFO - Searching for none near San Diego, CA within 25 miles with limit 5
+2025-03-11 20:41:15,857 - discord.agent - INFO - Searching facilities with params: {'latitude': '32.7174202', 'longitude': '-117.162772', 'radius': 25, 'limit': 15, 'full': 'true'}
+2025-03-11 20:41:19,292 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '32.7174202', 'longitude': '-117.162772', 'radius': 25, 'limit': 15, 'full': 'true'}
+2025-03-11 20:41:20,777 - discord.agent - INFO - Found 3 facilities and 6 recreation areas
+2025-03-11 20:41:20,777 - discord.agent - INFO - Final combined results: 5
+2025-03-11 20:42:32,046 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:42:32,052 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-11 20:42:32,052 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages
+2025-03-11 20:43:06,016 - discord - INFO - Processing message from the510dude: what are 3 places i can go hiking near zion, utah?
+2025-03-11 20:43:07,099 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:43:09,108 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:43:11,500 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:43:13,517 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:43:13,522 - discord.agent - INFO - Saved location for user 152253205668036608: Zion, UT
+2025-03-11 20:43:13,522 - discord.agent - INFO - Saved activity for user 152253205668036608: HIKING
+2025-03-11 20:43:13,653 - discord.agent - INFO - Searching for HIKING near Zion, UT within 25 miles with limit 3
+2025-03-11 20:43:13,653 - discord.agent - INFO - Searching facilities with params: {'latitude': '40.773487450000005', 'longitude': '-111.92228368586176', 'radius': 25, 'limit': 10, 'full': 'true', 'activity': 'HIKING'}
+2025-03-11 20:43:15,366 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '40.773487450000005', 'longitude': '-111.92228368586176', 'radius': 25, 'limit': 10, 'full': 'true', 'activity': 'HIKING'}
+2025-03-11 20:43:16,571 - discord.agent - INFO - Found 10 facilities and 3 recreation areas
+2025-03-11 20:43:16,571 - discord.agent - INFO - Final combined results: 3
+2025-03-11 20:43:36,212 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:43:36,218 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-11 20:43:36,218 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages
