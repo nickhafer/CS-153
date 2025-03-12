@@ -1666,3 +1666,30 @@ aiohttp.client_exceptions.ClientConnectionResetError: Cannot write to closing tr
 2025-03-11 20:48:13,141 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
 2025-03-11 20:48:13,145 - discord.agent - INFO - Summary includes proper formatting for multiple results
 2025-03-11 20:48:13,146 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages
+2025-03-11 20:50:28,184 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-11 20:50:28,298 - discord.client - INFO - logging in using static token
+2025-03-11 20:50:29,093 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 4c42f70a18ce9709ca94c6b7aa7ef69a).
+2025-03-11 20:50:31,200 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 20:50:39,559 - discord - INFO - Processing message from the510dude: find me places to hike near santa cruz, ca
+2025-03-11 20:50:41,726 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:50:42,337 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:50:44,571 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:50:44,796 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-03-11 20:50:44,797 - discord.agent - WARNING - API request failed (attempt 1/3): API error occurred: Status 429
+{"message":"Requests rate limit exceeded"}
+2025-03-11 20:50:44,797 - discord.agent - INFO - Rate limited. Waiting 2 seconds before retry.
+2025-03-11 20:50:47,661 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:50:47,666 - discord.agent - INFO - Saved location for user 152253205668036608: Santa Cruz, CA
+2025-03-11 20:50:47,666 - discord.agent - INFO - Saved activity for user 152253205668036608: HIKING
+2025-03-11 20:50:47,903 - discord.agent - INFO - Searching for HIKING near Santa Cruz, CA within 25 miles with limit 5
+2025-03-11 20:50:47,903 - discord.agent - INFO - Searching facilities with params: {'latitude': '37.050096', 'longitude': '-121.99059', 'radius': 25, 'limit': 10, 'full': 'true', 'activity': 'HIKING'}
+2025-03-11 20:50:49,404 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '37.050096', 'longitude': '-121.99059', 'radius': 25, 'limit': 10, 'full': 'true', 'activity': 'HIKING'}
+2025-03-11 20:50:50,631 - discord.agent - INFO - Found 1 facilities and 2 recreation areas
+2025-03-11 20:50:50,631 - discord.agent - INFO - Not enough results from RIDB (found 3, need 5). Generating 2 supplementary results.
+2025-03-11 20:50:50,631 - discord.agent - INFO - Generating 2 supplementary results for HIKING near Santa Cruz, CA
+2025-03-11 20:50:56,464 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:50:56,468 - discord.agent - INFO - Added 2 supplementary results. New total: 5
+2025-03-11 20:50:56,468 - discord.agent - INFO - Final combined results: 5
+2025-03-11 20:51:29,746 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:51:29,753 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-11 20:51:29,754 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages

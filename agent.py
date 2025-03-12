@@ -674,13 +674,8 @@ At the very end of your response, add a brief reminder about the benefits of spe
             
             # Extract parameters from the user's message with delay between requests
             location_data = await self.extract_parameter(user_query, EXTRACT_LOCATION_PROMPT)
-            await asyncio.sleep(1.5)  # Add delay between API calls            
             activity_data = await self.extract_parameter(user_query, EXTRACT_ACTIVITY_PROMPT)
-            await asyncio.sleep(1.5)  # Add delay between API calls
-            
             radius_data = await self.extract_parameter(user_query, EXTRACT_RADIUS_PROMPT)
-            await asyncio.sleep(1.5)  # Add delay between API calls
-            
             limit_data = await self.extract_parameter(user_query, EXTRACT_LIMIT_PROMPT)
             
             location = location_data.get("location", "none")
