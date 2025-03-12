@@ -1374,3 +1374,181 @@ aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gatewa
 2025-03-11 11:58:47,977 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
 2025-03-11 11:58:47,979 - discord.agent - INFO - Summary includes proper formatting for multiple results
 2025-03-11 11:58:47,980 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages
+2025-03-11 13:02:42,127 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-11 13:02:42,202 - discord.client - INFO - logging in using static token
+2025-03-11 13:02:43,401 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: eddf5bb16f784cbbfd306c74e06a83d5).
+2025-03-11 13:02:45,496 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 13:03:13,789 - discord - INFO - Processing message from the510dude: where can i go hiking near san diego?
+2025-03-11 13:03:14,971 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 13:03:17,100 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 13:03:19,209 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 13:03:21,362 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 13:03:21,365 - discord.agent - INFO - Saved location for user 152253205668036608: San Diego, CA
+2025-03-11 13:03:21,366 - discord.agent - INFO - Saved activity for user 152253205668036608: HIKING
+2025-03-11 13:03:21,894 - discord.agent - INFO - Searching for HIKING near San Diego, CA within 25 miles with limit 5
+2025-03-11 13:03:21,895 - discord.agent - INFO - Searching facilities with params: {'latitude': '32.7174202', 'longitude': '-117.162772', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-11 13:03:23,280 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '32.7174202', 'longitude': '-117.162772', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-11 13:03:24,262 - discord.agent - INFO - Found 0 facilities and 4 recreation areas
+2025-03-11 13:03:24,262 - discord.agent - INFO - Not enough results from RIDB (found 4, need 5). Generating 1 supplementary results.
+2025-03-11 13:03:24,262 - discord.agent - INFO - Generating 1 supplementary results for HIKING near San Diego, CA
+2025-03-11 13:03:27,378 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 13:03:27,382 - discord.agent - INFO - Added 1 supplementary results. New total: 5
+2025-03-11 13:03:27,382 - discord.agent - INFO - Final combined results: 5
+2025-03-11 13:03:45,425 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 13:03:45,434 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-11 13:03:45,434 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages
+2025-03-11 15:28:53,427 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-11 15:28:58,796 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: c8b3e06a7179428615bb60f1ce81e670).
+2025-03-11 15:29:00,902 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 16:56:00,544 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-11 17:08:10,505 - discord.client - ERROR - Attempting a reconnect in 1.31s
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 1116, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohappyeyeballs/impl.py", line 115, in start_connection
+    raise first_exception
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohappyeyeballs/impl.py", line 72, in start_connection
+    sock = await _connect_sock(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohappyeyeballs/impl.py", line 197, in _connect_sock
+    await loop.sock_connect(sock, address)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/selector_events.py", line 651, in sock_connect
+    return await fut
+           ^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/selector_events.py", line 659, in _sock_connect
+    sock.connect(address)
+OSError: [Errno 51] Network is unreachable
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/client.py", line 701, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/gateway.py", line 375, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/http.py", line 554, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/client.py", line 1004, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/client.py", line 703, in _request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 548, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 1056, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 1411, in _create_direct_connection
+    raise last_exc
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 1380, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/connector.py", line 1135, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host gateway-us-east1-c.discord.gg:443 ssl:default [Network is unreachable]
+2025-03-11 17:08:12,033 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-11 17:08:17,445 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: a543b75a2e51e6d23d779d2f6e95a994).
+2025-03-11 17:08:19,503 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 17:50:29,704 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-11 17:50:35,119 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 094280a5c6efd47c7f6c60d06594dde8).
+2025-03-11 17:50:37,211 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 18:00:30,378 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-11 18:00:35,768 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 4972038ada898b2fcf680bd23be113c4).
+2025-03-11 18:00:37,828 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 18:14:14,239 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-11 18:14:19,690 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: f56c37f1b712194ab8a34e43dd6b5e85).
+2025-03-11 18:29:08,732 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-11 18:29:14,225 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 8ed121f383610b5dacb93f9c5275fe9b).
+2025-03-11 18:29:16,304 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 18:32:07,057 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 8ed121f383610b5dacb93f9c5275fe9b.
+2025-03-11 18:57:44,846 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-03-11 18:57:50,347 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: ee06b33ad001bf2aebd4dcde32ff50f9).
+2025-03-11 18:57:52,374 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 18:59:28,705 - discord.client - ERROR - Attempting a reconnect in 2.97s
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/client.py", line 704, in connect
+    await self.ws.poll_event()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/gateway.py", line 627, in poll_event
+    await self.received_message(msg.data)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/gateway.py", line 532, in received_message
+    await self.send_as_json(beat)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/gateway.py", line 663, in send_as_json
+    await self.send(utils._to_json(data))
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/discord/gateway.py", line 659, in send
+    await self.socket.send_str(data)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/client_ws.py", line 245, in send_str
+    await self._writer.send_frame(
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/_websocket/writer.py", line 125, in send_frame
+    raise ClientConnectionResetError("Cannot write to closing transport")
+aiohttp.client_exceptions.ClientConnectionResetError: Cannot write to closing transport
+2025-03-11 18:59:31,911 - discord.gateway - INFO - Shard ID None has successfully RESUMED session ee06b33ad001bf2aebd4dcde32ff50f9.
+2025-03-11 19:01:41,946 - discord.gateway - INFO - Shard ID None has successfully RESUMED session ee06b33ad001bf2aebd4dcde32ff50f9.
+2025-03-11 20:04:59,206 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-11 20:04:59,279 - discord.client - INFO - logging in using static token
+2025-03-11 20:05:00,220 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 5b7ea61909727634808195b9bf08c846).
+2025-03-11 20:05:02,270 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 20:06:46,760 - discord - INFO - Processing message from the510dude: 3. where can I go hiking near Marin, ca?
+2025-03-11 20:06:49,337 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:06:51,348 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:06:53,946 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:06:56,002 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:06:56,006 - discord.agent - INFO - Saved location for user 152253205668036608: Marin, CA
+2025-03-11 20:06:56,006 - discord.agent - INFO - Saved activity for user 152253205668036608: HIKING
+2025-03-11 20:06:56,664 - discord.agent - INFO - Searching for HIKING near Marin, CA within 25 miles with limit 5
+2025-03-11 20:06:56,665 - discord.agent - INFO - Searching facilities with params: {'latitude': '38.0409144', 'longitude': '-122.6199638', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-11 20:06:58,310 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '38.0409144', 'longitude': '-122.6199638', 'radius': 25, 'limit': 15, 'full': 'true', 'activity': 'HIKING'}
+2025-03-11 20:06:59,687 - discord.agent - INFO - Found 7 facilities and 4 recreation areas
+2025-03-11 20:06:59,688 - discord.agent - INFO - Final combined results: 10
+2025-03-11 20:07:30,608 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:07:30,614 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-11 20:07:30,615 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages
+2025-03-11 20:21:32,962 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 5b7ea61909727634808195b9bf08c846.
+2025-03-11 20:22:34,111 - discord - INFO - Processing message from the510dude: 4. Im traveling to Zion, utah soon, what kinds of activities can I try there?
+2025-03-11 20:22:36,246 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:22:38,348 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:22:40,936 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:22:43,166 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:22:43,168 - discord.agent - INFO - Saved location for user 152253205668036608: Zion, UT
+2025-03-11 20:22:43,556 - discord.agent - INFO - Searching for none near Zion, UT within 25 miles with limit 5
+2025-03-11 20:22:43,557 - discord.agent - INFO - Searching facilities with params: {'latitude': '40.773487450000005', 'longitude': '-111.92228368586176', 'radius': 25, 'limit': 15, 'full': 'true'}
+2025-03-11 20:22:47,805 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '40.773487450000005', 'longitude': '-111.92228368586176', 'radius': 25, 'limit': 15, 'full': 'true'}
+2025-03-11 20:22:49,250 - discord.agent - INFO - Found 15 facilities and 7 recreation areas
+2025-03-11 20:22:49,250 - discord.agent - INFO - Final combined results: 10
+2025-03-11 20:23:17,107 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:23:17,111 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-11 20:23:17,111 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages
+2025-03-11 20:26:35,228 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-11 20:26:35,301 - discord.client - INFO - logging in using static token
+2025-03-11 20:26:36,198 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 84990b73dafa2bf0291215c20678ad53).
+2025-03-11 20:26:38,245 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 20:26:47,899 - discord - INFO - Processing message from the510dude: 5. Is there anywhere to fish near me?
+2025-03-11 20:26:49,016 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:26:51,211 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:26:53,377 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:26:55,524 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:26:55,526 - discord.agent - INFO - Saved activity for user 152253205668036608: FISHING
+2025-03-11 20:27:03,620 - discord - INFO - Processing message from the510dude: san diego, ca
+2025-03-11 20:27:03,923 - discord.agent - INFO - Detected location response: san diego, ca
+2025-03-11 20:27:03,923 - discord.agent - INFO - Saved location from direct response: san diego, ca
+2025-03-11 20:27:04,639 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:27:06,792 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:27:09,169 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:27:11,196 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:27:11,201 - discord.agent - INFO - Saved location for user 152253205668036608: San Diego, CA
+2025-03-11 20:27:11,380 - discord.agent - INFO - Searching for none near San Diego, CA within 25 miles with limit 5
+2025-03-11 20:27:11,381 - discord.agent - INFO - Searching facilities with params: {'latitude': '32.7174202', 'longitude': '-117.162772', 'radius': 25, 'limit': 15, 'full': 'true'}
+2025-03-11 20:27:13,178 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '32.7174202', 'longitude': '-117.162772', 'radius': 25, 'limit': 15, 'full': 'true'}
+2025-03-11 20:27:14,439 - discord.agent - INFO - Found 3 facilities and 6 recreation areas
+2025-03-11 20:27:14,439 - discord.agent - INFO - Final combined results: 9
+2025-03-11 20:27:41,610 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:27:41,619 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-11 20:27:41,619 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages

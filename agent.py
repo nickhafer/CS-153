@@ -544,34 +544,6 @@ At the very end of your response, add a brief reminder about the benefits of spe
                 if not any(emoji in response_text[:20] for emoji in ['🌲', '🏞️', '🌄', '🏕️', '🚶‍♀️', '🌿', '🌅', '🏔️', '⛰️', '🌳', '🍃']):
                     response_text = "🌲 " + response_text
                 
-                # Check if there's a benefit reminder at the end, add one if not
-                if not any(benefit in response_text[-200:] for benefit in ["time in nature", "time outdoors", "outdoor activity", "green spaces", "natural light", "time in the outdoors", "spending time outside"]):
-                    # Choose a random benefit to add, but track the last one used for this user
-                    benefits = [
-                        "\n\n🌳 Remember, just 20 minutes in nature can significantly lower stress hormone levels!",
-                        "\n\n🏞️ Studies show that time spent outdoors can improve your concentration and mental clarity.",
-                        "\n\n🌄 Spending time in nature has been linked to improved immune function and overall health.",
-                        "\n\n🌿 Regular outdoor activity can help improve sleep quality and reduce insomnia.",
-                        "\n\n🚶‍♀️ Time in green spaces has been shown to reduce symptoms of anxiety and depression.",
-                        "\n\n🌅 Outdoor activities can help strengthen your connection with your local community and environment.",
-                        "\n\n🏔️ Exposure to natural light helps regulate your body's internal clock and improve mood."
-                    ]
-                    
-                    # Get the last benefit used for this user (if any)
-                    last_benefit_index = -1
-                    if user_id and "last_benefit_index" in self.user_context[user_id]:
-                        last_benefit_index = self.user_context[user_id]["last_benefit_index"]
-                    
-                    # Choose a different benefit than the last one
-                    available_indices = [i for i in range(len(benefits)) if i != last_benefit_index]
-                    new_index = random.choice(available_indices)
-                    
-                    # Save this index for next time
-                    if user_id:
-                        self.user_context[user_id]["last_benefit_index"] = new_index
-                    
-                    response_text += benefits[new_index]
-                
                 return response_text
             
             # If we only have one result, or this is our last attempt, return what we have
@@ -702,8 +674,7 @@ At the very end of your response, add a brief reminder about the benefits of spe
             
             # Extract parameters from the user's message with delay between requests
             location_data = await self.extract_parameter(user_query, EXTRACT_LOCATION_PROMPT)
-            await asyncio.sleep(1.5)  # Add delay between API calls
-            
+            await asyncio.sleep(1.5)  # Add delay between API calls            
             activity_data = await self.extract_parameter(user_query, EXTRACT_ACTIVITY_PROMPT)
             await asyncio.sleep(1.5)  # Add delay between API calls
             
@@ -1118,3 +1089,4 @@ At the very end of your response, add a brief reminder about the benefits of spe
         except Exception as e:
             logger.error(f"Error in run method: {str(e)}")
             return "I encountered an error while processing your request. Please try again later."
+
