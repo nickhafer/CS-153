@@ -1643,3 +1643,26 @@ aiohttp.client_exceptions.ClientConnectionResetError: Cannot write to closing tr
 2025-03-11 20:43:36,212 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
 2025-03-11 20:43:36,218 - discord.agent - INFO - Summary includes proper formatting for multiple results
 2025-03-11 20:43:36,218 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages
+2025-03-11 20:47:23,044 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-11 20:47:23,114 - discord.client - INFO - logging in using static token
+2025-03-11 20:47:23,906 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 0229f302678e80e2cb989c7349881b51).
+2025-03-11 20:47:25,958 - discord - INFO - WanderBot#2339 has connected to Discord!
+2025-03-11 20:47:34,026 - discord - INFO - Processing message from the510dude: where can i go hiking in santa cruz, ca
+2025-03-11 20:47:36,122 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:47:38,533 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:47:40,842 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:47:43,240 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:47:43,251 - discord.agent - INFO - Saved location for user 152253205668036608: Santa Cruz, CA
+2025-03-11 20:47:43,251 - discord.agent - INFO - Saved activity for user 152253205668036608: HIKING
+2025-03-11 20:47:43,465 - discord.agent - INFO - Searching for HIKING near Santa Cruz, CA within 25 miles with limit 5
+2025-03-11 20:47:43,465 - discord.agent - INFO - Searching facilities with params: {'latitude': '37.050096', 'longitude': '-121.99059', 'radius': 25, 'limit': 10, 'full': 'true', 'activity': 'HIKING'}
+2025-03-11 20:47:45,006 - discord.agent - INFO - Searching recreation areas with params: {'latitude': '37.050096', 'longitude': '-121.99059', 'radius': 25, 'limit': 10, 'full': 'true', 'activity': 'HIKING'}
+2025-03-11 20:47:46,252 - discord.agent - INFO - Found 1 facilities and 2 recreation areas
+2025-03-11 20:47:46,253 - discord.agent - INFO - Not enough results from RIDB (found 3, need 5). Generating 2 supplementary results.
+2025-03-11 20:47:46,253 - discord.agent - INFO - Generating 2 supplementary results for HIKING near Santa Cruz, CA
+2025-03-11 20:47:52,463 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:47:52,467 - discord.agent - INFO - Added 2 supplementary results. New total: 5
+2025-03-11 20:47:52,468 - discord.agent - INFO - Final combined results: 5
+2025-03-11 20:48:13,141 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 20:48:13,145 - discord.agent - INFO - Summary includes proper formatting for multiple results
+2025-03-11 20:48:13,146 - discord.agent - INFO - Response exceeds Discord character limit, splitting into multiple messages

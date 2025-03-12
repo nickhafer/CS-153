@@ -22,7 +22,7 @@ facilities in the United States. You can help users find camping spots, hiking t
 fishing locations, and other outdoor activities.
 
 When providing information about recreational facilities, you MUST:
-1. List ALL available results (up to 10 locations)
+1. List ALL available results (up to 5 locations by default)
 2. For each facility/area include:
    - The name of the facility
    - A brief description
@@ -750,8 +750,8 @@ At the very end of your response, add a brief reminder about the benefits of spe
             radius = min(radius, 50)
             limit = min(limit, 10)
             
-            # Ensure we get at least 3 results by default
-            min_results = 3
+            # Ensure we get at least 5 results by default (instead of 3)
+            min_results = 5
             
             # If still no specific location was detected, ask the user for their location or use Mistral
             if location == "none":
@@ -859,8 +859,8 @@ At the very end of your response, add a brief reminder about the benefits of spe
             logger.info(f"Searching for {activity} near {location} within {radius} miles with limit {limit}")
                 
             # Search for facilities and recreation areas with initial radius
-            # Use a higher limit to ensure we get enough results
-            api_limit = max(limit * 3, 10)  # At least 10 results from each API
+            # Use a higher limit to ensure we get enough results, but keep it reasonable
+            api_limit = max(limit * 2, 5)  # Get at least enough results to satisfy the limit
             
             facilities = await self.search_facilities(lat, lon, activity, radius, api_limit)
             rec_areas = await self.search_recreation_areas(lat, lon, activity, radius, api_limit)
